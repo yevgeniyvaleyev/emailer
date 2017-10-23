@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
   deleteUser (user: UserSelectionData) {
     const index = this.users.findIndex(({id}) => user.id === id);
     if (index >= 0) {
-      this.users = utils.removeItemFromList(this.users, index);;
+      this.users = utils.removeItemFromList(this.users, index);
+      this.removeUserFromSelection(user);
     }
   }
 
