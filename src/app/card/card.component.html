@@ -1,0 +1,9 @@
+<div class='container'
+  (click)="toggleSelection($event)">
+  <ul [class.selected]="isSelected">
+    <li><b>ID:</b> {{ user.id }}</li>
+    <li><b>First Name:</b> {{ user.firstName }}</li>
+    <li><b>Name:</b> {{ user.lastName }}</li>
+  </ul>
+  <button (click)="deleteUser()">Delete</button>
+</div>

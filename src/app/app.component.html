@@ -1,0 +1,10 @@
+<card *ngFor="let user of users"
+  (onDelete)="deleteUser($event)"
+  (onSelect)="addUserToSelection($event)"
+  (onDeselect)="removeUserFromSelection($event)"
+  [user]="user">
+</card>
+
+<hr>
+
+Selected ids: {{selectedUserIds | json}}

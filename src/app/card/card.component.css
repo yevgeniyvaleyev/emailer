@@ -1,0 +1,36 @@
+.container {
+  --main-color: #42a4ef;
+  --selection-color: #3069AF;
+  --text-color: #041E36;
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+}
+
+.selected {
+  box-shadow: inset 0px 0px 30px var(--selection-color);
+}
+
+ul {
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  border: 1px solid var(--main-color);
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: none;
+  background: var(--main-color);
+  color: white;
+  padding: 8px 17px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 7px;
+}
