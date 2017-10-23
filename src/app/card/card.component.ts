@@ -9,11 +9,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input('user') user: User;
+  @Input('isSelected') isSelected: boolean;
   @Output('onDelete') onDelete = new EventEmitter()
   @Output('onSelect') onSelect = new EventEmitter()
   @Output('onDeselect') onDeselect = new EventEmitter()
-
-  isSelected: boolean = false;
 
   constructor() { }
 

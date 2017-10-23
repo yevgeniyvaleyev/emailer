@@ -11,7 +11,7 @@ import * as utils from './utils';
 export class AppComponent implements OnInit {
   title = 'app';
   users: User[];
-  selectedUserIds: number[] = [];
+  selectedUserId: number|null;
 
   constructor(private usersService: UsersService) {}
 
@@ -23,24 +23,10 @@ export class AppComponent implements OnInit {
     const index = this.users.findIndex(({id}) => user.id === id);
     if (index >= 0) {
       this.users = utils.removeItemFromList(this.users, index);
-      this.removeUserFromSelection(user);
     }
   }
 
-  isUserInSelection ({id}: UserSelectionData) {
-    return this.selectedUserIds.indexOf(id) >= 0;
-  }
-
-  addUserToSelection (user: UserSelectionData) {
-    if (!this.isUserInSelection(user)) {
-      this.selectedUserIds = [...this.selectedUserIds, user.id]
-    }
-  }
-
-  removeUserFromSelection (user: UserSelectionData) {
-    if (this.isUserInSelection(user)) {
-      const index = this.selectedUserIds.indexOf(user.id)
-      this.selectedUserIds = utils.removeItemFromList(this.selectedUserIds, index);
-    }
+  toggleUserSelection ({id}: UserSelectionData) {
+    this.selectedUserId = (this.selectedUserId !== id) ? id : null;
   }
 }
