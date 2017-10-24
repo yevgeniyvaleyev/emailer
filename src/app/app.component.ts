@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit () {
-    this.usersService.getAll().subscribe((users) => this.users = users);
+    this.usersService.getAll().subscribe((users: User[]) => this.users = users);
   }
 
   deleteUser (user: UserSelectionData) {

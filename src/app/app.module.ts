@@ -1,7 +1,8 @@
+import { APP_CONFIG, APP_CONFIG_DATA } from './config';
 import { UsersService } from './users.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule }   from '@angular/http';
+import { NgModule, InjectionToken, ReflectiveInjector, Injector } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
@@ -13,10 +14,11 @@ import { CardComponent } from './card/card.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    { provide: APP_CONFIG, useValue: APP_CONFIG_DATA }
   ],
   bootstrap: [AppComponent]
 })
