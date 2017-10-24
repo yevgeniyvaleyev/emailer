@@ -1,6 +1,7 @@
+import { User } from './user.model';
 import { UsersService } from './users.service';
 import { Component, OnInit } from '@angular/core';
-import { User, UserSelectionData } from './interfaces';
+import { UserSelectionData } from './interfaces';
 import * as utils from './utils';
 
 @Component({
@@ -10,20 +11,31 @@ import * as utils from './utils';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  users: User[];
-  selectedUserId: number|null;
+  users: User[] = [];
+  selectedUserId: string|null;
 
   constructor(private usersService: UsersService) {}
 
   ngOnInit () {
-    this.usersService.getAll().subscribe((users: User[]) => this.users = users);
+    this.getUsers();
   }
 
-  deleteUser (user: UserSelectionData) {
-    const index = this.users.findIndex(({id}) => user.id === id);
-    if (index >= 0) {
-      this.users = utils.removeItemFromList(this.users, index);
-    }
+  getUsers () {
+    this.usersService
+      .getAll()
+      .subscribe((users: User[]) => this.users = users);
+  }
+
+  deleteUser ({id}: UserSelectionData) {
+    this.usersService
+      .removeById(id)
+      .subscribe(() => this.getUsers())
+  }
+
+  addUser () {
+    this.usersService
+      .add('Kolya Pupkin', 'adsa@sdf.com')
+      .subscribe(() => this.getUsers());
   }
 
   toggleUserSelection ({id}: UserSelectionData) {

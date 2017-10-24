@@ -5,3 +5,8 @@
   (onDeselect)="toggleUserSelection($event)"
   [user]="user">
 </card>
+<p *ngIf="users.length === 0">
+  <em>Users collection is empty</em>
+</p>
+<button (click)="addUser()">add</button>
+

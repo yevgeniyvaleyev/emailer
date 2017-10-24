@@ -1,12 +1,12 @@
 [
   {
-    "id": 1,
-    "firstName": "Alex",
-    "lastName": "Rogers"
+    "_id": 1,
+    "fullName": "Alex",
+    "emaol": "Rogers"
   },
   {
-    "id": 2,
-    "firstName": "Mike",
-    "lastName": "Smith"
+    "_id": 2,
+    "fullName": "Mike",
+    "email": "Smith"
   }
 ]

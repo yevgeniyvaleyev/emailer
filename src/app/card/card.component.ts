@@ -1,4 +1,5 @@
-import { User, UserSelectionData } from './../interfaces';
+import { User } from './../user.model';
+import { UserSelectionData } from './../interfaces';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -22,7 +23,8 @@ export class CardComponent implements OnInit {
     return {id: this.user.id}
   }
 
-  deleteUser () {
+  deleteUser ($event: MouseEvent) {
+    $event.stopPropagation();
     this.onDelete.emit(this.getUserSelectionData());
   }
 

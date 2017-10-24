@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  --main-color: #42a4ef;
+}
+
+button {
+  border: none;
+  background: var(--main-color);
+  color: white;
+  padding: 8px 17px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 7px;
+}

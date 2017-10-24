@@ -1,9 +1,9 @@
-export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
+export interface UserResponse {
+  _id: string;
+  fullName: string;
+  email: string;
 }
 
 export interface UserSelectionData {
-  id: number
+  id: string
 }

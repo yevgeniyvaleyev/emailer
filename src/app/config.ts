@@ -1,11 +1,12 @@
 import { InjectionToken } from '@angular/core';
 
 export interface AppConfig {
-  usersUrl: string
+  usersApi: string
 }
 
-export const APP_CONFIG_DATA = {
-  usersUrl: '/assets/users.json'
+export const APP_CONFIG_DATA: AppConfig = {
+  // usersApi: 'http://test-api.javascript.ru/v1/ujeen/users'
+  usersApi: 'http://test-api.javascript.ru/v1/ujeen/users'
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
