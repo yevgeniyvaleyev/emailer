@@ -1,0 +1,23 @@
+form {
+  margin: 5px 0;
+}
+
+label {
+  width: 100px;
+  display: inline-block;
+}
+
+input {
+  min-width: 130px;
+}
+
+.form-row {
+  padding: 0 5px;
+  margin: 5px 0;
+}
+
+.error {
+  font-style: italic;
+  padding: 3px;
+  background: #FCE8E8
+}

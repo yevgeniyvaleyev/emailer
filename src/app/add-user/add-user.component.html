@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+  <div class="form-row">
+    <label for="fullNameControl">Full name:</label>
+    <input id="fullNameControl" formControlName="fullName" type="text">
+  </div>
+  <div class="form-row error" *ngIf="fullName.touched && fullName.invalid">
+    <div *ngIf="fullName.errors.required">Full name is required</div>
+    <div *ngIf="fullName.errors.fullName">
+      Full name has to be minimum 5 characters
+      and have whitespace between words,
+      each word has to start with capital letter
+    </div>
+  </div>
+  <div class="form-row">
+    <label for="emailControl">Email:</label>
+    <input id="emailControl" formControlName="email" type="email">
+  </div>
+  <div class="form-row error" *ngIf="email.touched && email.invalid">
+    Invalid email
+  </div>
+  <div class="form-row">
+    <label for="dateControl">Date of birth:</label>
+    <input id="dateControl" formControlName="dateOfBirth" type="date">
+  </div>
+  <div class="form-row error" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+    Invalid date of birth
+  </div>
+  <button (click)="addUser()">Send</button>
+</form>

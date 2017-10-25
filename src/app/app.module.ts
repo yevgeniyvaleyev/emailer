@@ -1,22 +1,27 @@
 import { APP_CONFIG, APP_CONFIG_DATA } from './config';
 import { UsersService } from './users.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, InjectionToken, ReflectiveInjector, Injector } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { MyDateFormatPipe } from './date-format.pipe';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    MyDateFormatPipe
+    MyDateFormatPipe,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService,

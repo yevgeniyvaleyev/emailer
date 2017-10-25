@@ -32,12 +32,7 @@ export class AppComponent implements OnInit {
       .subscribe(() => this.getUsers())
   }
 
-  addUser () {
-    const data: UserRequest = {
-      fullName: 'Kolya Pupkin',
-      email: 'adsa@sdf.com',
-      dateOfBirth: 1508915659095
-    }
+  addUser (data: UserRequest) {
     this.usersService
       .add(data)
       .subscribe(() => this.getUsers());
