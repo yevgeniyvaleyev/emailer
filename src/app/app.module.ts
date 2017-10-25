@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
+import { MyDateFormatPipe } from './date-format.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    CardComponent,
+    MyDateFormatPipe
   ],
   imports: [
     BrowserModule,

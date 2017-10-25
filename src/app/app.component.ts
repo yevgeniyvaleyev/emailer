@@ -1,7 +1,7 @@
 import { User } from './user.model';
 import { UsersService } from './users.service';
 import { Component, OnInit } from '@angular/core';
-import { UserSelectionData } from './interfaces';
+import { UserSelectionData, UserRequest } from './interfaces';
 import * as utils from './utils';
 
 @Component({
@@ -33,8 +33,13 @@ export class AppComponent implements OnInit {
   }
 
   addUser () {
+    const data: UserRequest = {
+      fullName: 'Kolya Pupkin',
+      email: 'adsa@sdf.com',
+      dateOfBirth: 1508915659095
+    }
     this.usersService
-      .add('Kolya Pupkin', 'adsa@sdf.com')
+      .add(data)
       .subscribe(() => this.getUsers());
   }
 

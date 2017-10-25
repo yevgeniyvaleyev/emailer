@@ -1,5 +1,5 @@
 import { User } from './user.model';
-import { UserResponse } from './interfaces';
+import { UserResponse, UserRequest } from './interfaces';
 import { AppConfig, APP_CONFIG } from './config';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector, OnInit } from '@angular/core';
@@ -29,9 +29,9 @@ export class UsersService {
       })
   }
 
-  add (fullName: string, email: string) {
+  add (data: UserRequest) {
     return this.http
-      .post(this.config.usersApi, { fullName, email })
+      .post(this.config.usersApi, data)
   }
 
 }
