@@ -25,5 +25,5 @@
   <div class="form-row error" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
     Invalid date of birth
   </div>
-  <button (click)="addUser()">Send</button>
+  <button (click)="addUser()" [disabled]="!form.valid">Send</button>
 </form>

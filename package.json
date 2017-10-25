@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "git push heroku master",
+    "deploy": "git push heroku master && npm run pr",
     "heroku-postbuild": "ng build --aot -prod",
     "remove_old_pr_code": "rimraf ~/mydev/angular-20171012-2130/homework/yevgeniy.valeyev/*",
     "copy_new_pr_code": "cp -R ./src/app/ ~/mydev/angular-20171012-2130/homework/yevgeniy.valeyev/",

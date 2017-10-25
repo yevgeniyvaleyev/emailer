@@ -1,5 +1,6 @@
 * {
   --main-color: #42a4ef;
+  --disabled-color: #C0C0C0;
 }
 
 body {
@@ -8,6 +9,7 @@ body {
 }
 
 button {
+  cursor: pointer;
   border: none;
   background: var(--main-color);
   color: white;
@@ -16,4 +18,9 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 7px;
+}
+
+button[disabled] {
+  cursor: default;
+  background: var(--disabled-color);
 }
