@@ -16,9 +16,8 @@ export class AddUserComponent implements OnInit {
     fullName: new FormControl('', [
       UserNameValidators.fullName,
       Validators.required
-
     ]),
-    dateOfBirth: new FormControl('', Validators.required),
+    birthdate: new FormControl('', Validators.required),
     email: new FormControl('', [
       Validators.required,
       Validators.email
@@ -38,8 +37,8 @@ export class AddUserComponent implements OnInit {
     return this.form.get('email');
   }
 
-  get dateOfBirth () {
-    return this.form.get('dateOfBirth');
+  get birthdate () {
+    return this.form.get('birthdate');
   }
 
   addUser () {

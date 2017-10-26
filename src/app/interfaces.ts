@@ -4,7 +4,7 @@ export interface UserSelectionData {
 
 export interface UserRequest {
   fullName: string;
-  dateOfBirth: number;
+  birthdate: string;
   email: string;
 }
 

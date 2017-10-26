@@ -3,7 +3,7 @@
   <ul [class.selected]="isSelected">
     <li><b>ID:</b> {{ user.id }}</li>
     <li><b>First Name:</b> {{ user.fullName }}</li>
-    <li><b>Date of birth:</b> {{ user.dataOfBirth | myDateFormat }}</li>
+    <li><b>Date of birth:</b> {{ user.birthdate | myDateFormat }}</li>
     <li><b>Email:</b> {{ user.email }}</li>
   </ul>
   <button (click)="deleteUser($event)">Delete</button>

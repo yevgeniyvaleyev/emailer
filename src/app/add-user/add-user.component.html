@@ -20,9 +20,9 @@
   </div>
   <div class="form-row">
     <label for="dateControl">Date of birth:</label>
-    <input id="dateControl" formControlName="dateOfBirth" type="date">
+    <input id="dateControl" formControlName="birthdate" type="date">
   </div>
-  <div class="form-row error" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+  <div class="form-row error" *ngIf="birthdate.touched && birthdate.invalid">
     Invalid date of birth
   </div>
   <button (click)="addUser()" [disabled]="!form.valid">Send</button>

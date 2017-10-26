@@ -34,7 +34,10 @@ export class AppComponent implements OnInit {
 
   addUser (data: UserRequest) {
     this.usersService
-      .add(data)
+      .add({
+        ...data,
+        birthdate: new Date(data.birthdate).toUTCString()
+      })
       .subscribe(() => this.getUsers());
   }
 
