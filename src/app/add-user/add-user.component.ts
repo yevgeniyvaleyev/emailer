@@ -1,7 +1,10 @@
+import { email } from './../validators/patterns';
 import { UserNameValidators } from './../validators/username.validator';
 import { UserRequest } from './../interfaces';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 @Component({
   selector: 'add-user',
@@ -19,8 +22,8 @@ export class AddUserComponent implements OnInit {
     ]),
     birthdate: new FormControl('', Validators.required),
     email: new FormControl('', [
-      Validators.required,
-      Validators.email
+      UserNameValidators.correctEmail,
+      Validators.required
     ])
   })
 

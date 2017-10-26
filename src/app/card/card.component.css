@@ -1,7 +1,7 @@
 .container {
   --main-color: #42a4ef;
   --selection-color: #3069AF;
-  --text-color: #041E36;
+  --text-color: #4b4b4b;
   position: relative;
   cursor: pointer;
 }
