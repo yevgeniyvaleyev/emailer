@@ -1,4 +1,5 @@
-import { APP_CONFIG, APP_CONFIG_DATA } from './config';
+import { APP_CONFIG_DATA } from './config/config';
+import { APP_CONFIG } from './config/tokens';
 import { UsersService } from './users.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
