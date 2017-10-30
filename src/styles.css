@@ -1,4 +1,6 @@
-* {
+
+
+/* * {
   --main-color: #42a4ef;
   --disabled-color: #C0C0C0;
 }
@@ -23,4 +25,4 @@ button {
 button[disabled] {
   cursor: default;
   background: var(--disabled-color);
-}
+} */

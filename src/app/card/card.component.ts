@@ -1,4 +1,4 @@
-import { User } from './../user.model';
+import { User } from './../models/user.model';
 import { UserSelectionData } from './../interfaces';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 

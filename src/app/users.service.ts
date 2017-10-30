@@ -1,6 +1,6 @@
+import { User } from './models/user.model';
 import { AppConfig } from './config/interfaces';
 import { APP_CONFIG } from './config/tokens';
-import { User } from './user.model';
 import { UserResponse, UserRequest } from './interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector, Inject, OnInit } from '@angular/core';
@@ -16,7 +16,7 @@ export class UsersService {
     return this.http
       .get(this.config.usersApi)
       .map((response: UserResponse[]) =>
-        response.map(user => new User(user)))
+        response.map(data => new User(data)))
   }
 
   removeById (id: string) {

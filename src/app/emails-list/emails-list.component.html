@@ -1,0 +1,9 @@
+<emails-navigation></emails-navigation>
+<hr>
+<ul>
+  <li
+    *ngFor="let email of emails"
+    routerLink="/email/{{email.id}}">
+      {{ email.subject }}, {{ email.date | myDateFormat }}
+  </li>
+</ul>

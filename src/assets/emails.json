@@ -1,0 +1,18 @@
+[
+  {
+    "id": "id1",
+    "subject": "Some title 1",
+    "from": "test@test.com",
+    "to": "example@test.com",
+    "date": "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    "body": "This is a body of an email 1"
+  },
+  {
+    "id": "id2",
+    "subject": "Some title 2",
+    "from": "test@test.com",
+    "to": "example@test.com",
+    "date": "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    "body": "This is a body of an email 2"
+  }
+]
