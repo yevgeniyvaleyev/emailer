@@ -6,7 +6,7 @@ import 'rxjs/add/observable/from';
 @Injectable()
 export class AuthService {
 
-  isAuthenticated = false;
+  private isAuthenticated = false;
 
   constructor() {}
 

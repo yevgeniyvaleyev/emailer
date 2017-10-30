@@ -12,10 +12,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    protected router: Router
+    private router: Router
   ) {}
 
   ngOnInit () {}
+
+  isLoggedIn () {
+    return this.authService.isLoggedIn();
+  }
 
   logout () {
     this.authService.logout().subscribe(({isAuthenticated}) => {
