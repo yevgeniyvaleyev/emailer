@@ -39,6 +39,7 @@ import { EmailComponent } from './email/email.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/emails/inbox', pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'emails', redirectTo: '/emails/inbox', pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'emails/:type', component: EmailsListComponent, canActivate: [AuthGuardService] },
       { path: 'email/:id', component: EmailComponent, canActivate: [AuthGuardService] },
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService] },
