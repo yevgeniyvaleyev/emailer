@@ -3,7 +3,7 @@ import { email as emailPattern } from './../validators/patterns';
 
 export class Email {
 
-  id: string;
+  id: number;
   subject: string;
   from: string;
   to: string;
@@ -31,7 +31,7 @@ export class Email {
   }
 
   isValidData (data: EmailData) {
-    return data.subject && data.body && data.id
+    return data.subject && data.body && !isNaN(data.id)
       && this.isValidEmail(data.from)&& this.isValidEmail(data.to)
       && this.isValidDate(data.date);
   }

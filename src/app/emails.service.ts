@@ -12,22 +12,15 @@ export class EmailsService {
 
   getAllByType (type: string) {
     return this.http
-      .get(this.config.emailsApi)
+      .get(`${this.config.emailsApi}/type/${type}`)
       .map((response: EmailData[]) =>
         response.map(data => new Email(data)))
   }
 
-  /**
-   * Fake mathod
-   * @param id
-   */
-  get (id: string) {
+  get (id: number) {
     return this.http
-      .get(this.config.emailsApi)
-      .map((response: EmailData[]) => {
-        const emailData = response.find(item => id === item.id);
-        return new Email(emailData);
-      })
+      .get(`${this.config.emailsApi}/${id}`)
+      .map((data: EmailData) => new Email(data))
   }
 
 }

@@ -13,7 +13,7 @@ export interface UserResponse extends UserRequest {
 }
 
 export interface EmailData {
-  id: string;
+  id: number;
   subject: string;
   from: string;
   to: string;

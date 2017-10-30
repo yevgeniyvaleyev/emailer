@@ -22,7 +22,7 @@ export class EmailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.switchMap(({id}) =>
-    this.emailsServise.get(id)
+    this.emailsServise.get(Number(id))
   ).subscribe((email: Email) =>
     this.email = email
   )
