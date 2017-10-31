@@ -10,22 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit () {}
-
-  isLoggedIn () {
-    return this.authService.isLoggedIn();
-  }
-
-  logout () {
-    this.authService.logout().subscribe(({isAuthenticated}) => {
-      if (!isAuthenticated) {
-        this.router.navigate(['/login']);
-      }
-    });
-  }
 }

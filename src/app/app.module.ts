@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { EmailsNavigationComponent } from './emails-list/navigation/navigation.component';
 import { EmailComponent } from './email/email.component';
+import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EmailComponent } from './email/email.component';
     LoginComponent,
     UsersListComponent,
     EmailsNavigationComponent,
-    EmailComponent
+    EmailComponent,
+    MainNavigationComponent
   ],
   imports: [
     BrowserModule,

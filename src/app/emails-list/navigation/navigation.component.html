@@ -1,7 +1,12 @@
-<a
-  *ngFor="let item of items"
-  routerLink="/emails/{{item}}"
-  class="btn"
-  routerLinkActive="btn-primary">
-    {{item}}
-</a>
+<nav>
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item" *ngFor="let item of items">
+        <a
+          routerLink="/emails/{{item}}"
+          class="nav-link"
+          routerLinkActive="active">
+            {{item}}
+        </a>
+      </li>
+    </ul>
+</nav>

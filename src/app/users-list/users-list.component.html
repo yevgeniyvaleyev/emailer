@@ -1,11 +1,10 @@
-<add-user (onAdd)="addUser($event)"></add-user>
-<card *ngFor="let user of users"
-  (onDelete)="deleteUser($event)"
-  [isSelected]="selectedUserId === user.id"
-  (onSelect)="toggleUserSelection($event)"
-  (onDeselect)="toggleUserSelection($event)"
-  [user]="user">
-</card>
-<p *ngIf="users.length === 0">
-  <em>Users collection is empty</em>
-</p>
+<div class="row">
+    <add-user class="col-12" (onAdd)="addUser($event)"></add-user>
+</div>
+<div class="row">
+    <card class="col-3" *ngFor="let user of users" (onDelete)="deleteUser($event)" [isSelected]="selectedUserId === user.id" (onSelect)="toggleUserSelection($event)" (onDeselect)="toggleUserSelection($event)" [user]="user">
+    </card>
+    <p *ngIf="users.length === 0">
+        <em>Users collection is empty</em>
+    </p>
+</div>

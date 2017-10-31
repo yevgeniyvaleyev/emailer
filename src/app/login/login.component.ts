@@ -1,6 +1,10 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { email } from './../validators/patterns';
+import { UserNameValidators } from './../validators/username.validator';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'login',
@@ -9,14 +13,35 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, protected router: Router) { }
+  form = new FormGroup({
+    password: new FormControl('', Validators.required),
+    email: new FormControl('', [
+      UserNameValidators.correctEmail,
+      Validators.required
+    ])
+  })
+
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {}
+
+  get email () {
+    return this.form.get('email');
+  }
+
+  get password () {
+    return this.form.get('password');
+  }
 
   login () {
     this.authService.login().subscribe(({isAuthenticated}) => {
       if (isAuthenticated) {
-        this.router.navigate(['/']);
+        const targetUrl = this.route.snapshot.queryParamMap.get('targetUrl');
+        this.router.navigate([targetUrl || '/']);
       }
     })
   }
