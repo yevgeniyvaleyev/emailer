@@ -19,6 +19,12 @@ export class UsersService {
         response.map(data => new User(data)))
   }
 
+  get (id: string) {
+    return this.http
+      .get(`${this.config.usersApi}/${id}`)
+      .map((data: UserResponse) => new User(data))
+  }
+
   removeById (id: string) {
     return this.http
       .delete(`${this.config.usersApi}/${id}`, {

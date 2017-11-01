@@ -3,11 +3,11 @@ import { UserSelectionData } from './../interfaces';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'user-card-detailed',
+  templateUrl: './user-card-detailed.component.html',
+  styleUrls: ['./user-card-detailed.component.css']
 })
-export class CardComponent implements OnInit {
+export class UserCardDetailedComponent implements OnInit {
 
   @Input('user') user: User;
   @Input('isSelected') isSelected: boolean;

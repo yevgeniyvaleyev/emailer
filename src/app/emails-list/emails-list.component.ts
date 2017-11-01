@@ -14,6 +14,7 @@ import 'rxjs/add/operator/switchMap';
 export class EmailsListComponent implements OnInit {
 
   emails: Email[];
+  type: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +22,10 @@ export class EmailsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.switchMap(({type}) =>
-      this.emailsServise.getAllByType(type)
-    ).subscribe((emails: Email[]) =>
+    this.route.params.switchMap(({type}) => {
+      this.type = type;
+      return this.emailsServise.getAllByType(type)
+    }).subscribe((emails: Email[]) =>
       this.emails = emails
     )
 

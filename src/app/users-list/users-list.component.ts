@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { UsersService } from '../users.service';
@@ -14,7 +15,10 @@ export class UsersListComponent implements OnInit {
   users: User[] = [];
   selectedUserId: string|null;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit () {
     this.getUsers();
@@ -30,6 +34,10 @@ export class UsersListComponent implements OnInit {
     this.usersService
       .removeById(id)
       .subscribe(() => this.getUsers())
+  }
+
+  openUserDetails (id: string) {
+    this.router.navigate([`/users/${id}`]);
   }
 
   addUser (data: UserRequest) {

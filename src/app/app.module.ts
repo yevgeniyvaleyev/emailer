@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CardComponent } from './card/card.component';
+import { UserCardDetailedComponent } from './user-card-detailed/user-card-detailed.component';
 import { MyDateFormatPipe } from './date-format.pipe';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EmailsListComponent } from './emails-list/emails-list.component';
@@ -20,11 +20,13 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { EmailsNavigationComponent } from './emails-list/navigation/navigation.component';
 import { EmailComponent } from './email/email.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
+import { UserCardShortComponent } from './user-card-short/user-card-short.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent,
+    UserCardDetailedComponent,
     MyDateFormatPipe,
     AddUserComponent,
     EmailsListComponent,
@@ -32,7 +34,9 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
     UsersListComponent,
     EmailsNavigationComponent,
     EmailComponent,
-    MainNavigationComponent
+    MainNavigationComponent,
+    UserCardShortComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +45,27 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/emails/inbox', pathMatch: 'full', canActivate: [AuthGuardService] },
-      { path: 'emails', redirectTo: '/emails/inbox', pathMatch: 'full', canActivate: [AuthGuardService] },
-      { path: 'emails/:type', component: EmailsListComponent, canActivate: [AuthGuardService] },
-      { path: 'email/:id', component: EmailComponent, canActivate: [AuthGuardService] },
-      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService] },
+      {
+        path: 'emails',
+        canActivate: [AuthGuardService],
+        children: [
+          { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+          {
+            path: ':type', children: [
+              { path: '', component: EmailsListComponent },
+              { path: ':id', component: EmailComponent }
+            ]
+          }
+        ]
+      },
+      {
+        path: 'users',
+        canActivate: [AuthGuardService],
+        children: [
+          { path: '', component: UsersListComponent },
+          { path: ':id', component: UserDetailsComponent }
+        ]
+      },
       { path: 'login', component: LoginComponent }
     ])
   ],
