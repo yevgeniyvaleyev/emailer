@@ -23,6 +23,36 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
 import { UserCardShortComponent } from './user-card-short/user-card-short.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
+const routes = [
+  {
+    path: '',
+    canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: '/emails/inbox', pathMatch: 'full' },
+      {
+        path: 'emails',
+        children: [
+          { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+          {
+            path: ':type', children: [
+              { path: '', component: EmailsListComponent },
+              { path: ':id', component: EmailComponent }
+            ]
+          }
+        ]
+      },
+      {
+        path: 'users',
+        children: [
+          { path: '', component: UsersListComponent },
+          { path: ':id', component: UserDetailsComponent }
+        ]
+      }
+    ]
+  },
+  { path: 'login', component: LoginComponent }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,31 +73,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/emails/inbox', pathMatch: 'full', canActivate: [AuthGuardService] },
-      {
-        path: 'emails',
-        canActivate: [AuthGuardService],
-        children: [
-          { path: '', redirectTo: 'inbox', pathMatch: 'full' },
-          {
-            path: ':type', children: [
-              { path: '', component: EmailsListComponent },
-              { path: ':id', component: EmailComponent }
-            ]
-          }
-        ]
-      },
-      {
-        path: 'users',
-        canActivate: [AuthGuardService],
-        children: [
-          { path: '', component: UsersListComponent },
-          { path: ':id', component: UserDetailsComponent }
-        ]
-      },
-      { path: 'login', component: LoginComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [
     UsersService,
