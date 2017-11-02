@@ -27,11 +27,11 @@ router.get('/api/emails', emailsApi.getAll);
 router.get('/api/emails/:id', emailsApi.get);
 router.get('/api/emails/type/:type', emailsApi.getAllByType);
 
-if (isProduction) {
-  const isNotAPIRoutePath = /^(?!.*\/api).*$/;
-  router.get(isNotAPIRoutePath, async (ctx) => {
-    await send(ctx, './dist/index.html');
-  });
-}
+// if (isProduction) {
+//   const isNotAPIRoutePath = /^(?!.*\/api).*$/;
+//   router.get(isNotAPIRoutePath, async (ctx) => {
+//     await send(ctx, './dist/index.html');
+//   });
+// }
 
 module.exports = app;
