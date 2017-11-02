@@ -14,6 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "git push heroku master && npm run pr",
+    "publish": "git push pb master",
     "heroku-postbuild": "npm run build-prod",
     "start": "npm run start-prod-server",
     "remove_old_pr_code": "rimraf ~/mydev/angular-20171012-2130/homework/yevgeniy.valeyev/*",
