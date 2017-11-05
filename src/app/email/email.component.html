@@ -1,13 +1,8 @@
-<div class="row">
-  <emails-navigation class="col-sm-3"></emails-navigation>
-  <div class="col-sm-9">
-      <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">{{email?.subject}}</h4>
-            <h6 class="card-subtitle mb-2 text-muted">From: {{email?.from}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">To: {{email?.to}}</h6>
-            <p class="card-text">{{email?.body}}</p>
-          </div>
-      </div>
-  </div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{email?.subject}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">From: {{email?.from}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">To: {{email?.to}}</h6>
+        <p class="card-text">{{email?.body}}</p>
+    </div>
 </div>
