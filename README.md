@@ -1,6 +1,6 @@
 # Emailer app
 
-This is a an application which I use as test platform for different experiments with Angular 4+, Rxjs, Node etc.
+This is a demo application which I use as test platform for different experiments with Angular 4+, Rxjs, Node etc.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
 
