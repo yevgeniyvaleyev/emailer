@@ -1,15 +1,10 @@
-<div class="row">
-  <emails-navigation class="col-sm-3"></emails-navigation>
-  <div class="col-sm-9">
-      <div class="list-group">
-          <a
-            *ngFor="let email of emails"
-            [routerLink]="[email.id]"
-            routerLinkActive="active"
-            class="list-group-item list-group-item-action ">
-              {{ email.subject }}, {{ email.date | myDateFormat }}
-          </a>
-      </div>
-  </div>
+<div class="list-group">
+    <a
+      *ngFor="let email of emails"
+      [routerLink]="[email.id]"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action
+      ">
+        {{ email.subject }}, {{ email.date | myDateFormat }}
+    </a>
 </div>
-
