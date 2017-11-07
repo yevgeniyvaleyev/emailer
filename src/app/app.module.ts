@@ -12,6 +12,7 @@ import { RouterModule }   from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatToolbarModule,
+  MatCardModule,
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
@@ -89,6 +90,7 @@ const routes = [
     MatInputModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

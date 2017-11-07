@@ -1,8 +1,5 @@
-<div class="card">
-    <div class="card-body">
-        <h4 class="card-title">{{email?.subject}}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">From: {{email?.from}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">To: {{email?.to}}</h6>
-        <p class="card-text">{{email?.body}}</p>
-    </div>
-</div>
+<mat-card>
+  <mat-card-title>{{email?.subject}}</mat-card-title>
+  <mat-card-subtitle>From: {{email?.from}} | To: {{email?.to}}</mat-card-subtitle>
+  <mat-card-content>{{email?.body}}</mat-card-content>
+</mat-card>
