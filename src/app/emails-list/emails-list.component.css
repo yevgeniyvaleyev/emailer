@@ -1,4 +1,4 @@
-.email-list li:hover {
-  background: lightblue;
+.mat-list-item:hover {
+  background: #f8f5fd;
   cursor: pointer;
 }

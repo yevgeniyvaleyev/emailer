@@ -1,10 +1,7 @@
-<div class="list-group">
-    <a
-      *ngFor="let email of emails"
+<mat-list>
+    <mat-list-item
       [routerLink]="[email.id]"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action
-      ">
+      *ngFor="let email of emails">
         {{ email.subject }}, {{ email.date | myDateFormat }}
-    </a>
-</div>
+    </mat-list-item>
+</mat-list>

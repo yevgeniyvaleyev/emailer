@@ -9,7 +9,7 @@ export interface UserRequest {
 }
 
 export interface UserResponse extends UserRequest {
-  _id: string;
+  id: string;
 }
 
 export interface EmailData {

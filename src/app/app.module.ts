@@ -10,7 +10,14 @@ import { NgModule, InjectionToken, ReflectiveInjector, Injector, Component } fro
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatListModule
+} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -80,6 +87,8 @@ const routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSidenavModule,
+    MatListModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

@@ -12,13 +12,13 @@ export class User {
     if (!this.isValidData(data)) {
       throw new Error('User data is not valid')
     }
-    this.id = data._id;
+    this.id = data.id;
     this.fullName = data.fullName;
     this.email = data.email;
     this.birthdate = new Date(data.birthdate);
   }
 
   isValidData (data: UserResponse) {
-    return data.fullName && data._id && data.email && data.birthdate;
+    return data.fullName && data.id && data.email && data.birthdate;
   }
 }
