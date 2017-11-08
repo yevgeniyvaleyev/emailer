@@ -1,61 +1,66 @@
 <form [formGroup]="form">
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <label for="fullNameControl">Full name</label>
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        matInput
+        formControlName="fullName"
+        class="form-control"
+        [ngClass]="{'is-invalid': fullName.touched && fullName.invalid}"
+        id="fullNameControl"
+        placeholder="Full name"
+      >
+      <mat-hint align="end">John Smith</mat-hint>
+      <mat-error *ngIf="fullName.touched && fullName.invalid">
+          <div *ngIf="fullName.errors.required">
+              Full name is required
+          </div>
+          <div *ngIf="fullName.errors.fullName">
+            Full name has to be minimum 5 characters
+            and have whitespace between words,
+            each word has to start with capital letter
+          </div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
         <input
-          type="text"
-          class="form-control"
-          formControlName="fullName"
-          [ngClass]="{'is-invalid': fullName.touched && fullName.invalid}"
-          id="fullNameControl"
-          placeholder="Full name"
-          required>
-        <div class="invalid-feedback" *ngIf="fullName.touched && fullName.invalid">
-            <div *ngIf="fullName.errors.required">
-                Full name is required
-            </div>
-            <div *ngIf="fullName.errors.fullName">
-              Full name has to be minimum 5 characters
-              and have whitespace between words,
-              each word has to start with capital letter
-            </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="emailControl">Email</label>
-        <input
-          id="emailControl"
-          formControlName="email"
           type="email"
+          required
+          matInput
+          formControlName="email"
           class="form-control"
           [ngClass]="{'is-invalid': email.touched && email.invalid}"
-          placeholder="example@test.com"
-          required
+          id="emailControl"
+          placeholder="Email"
         >
-        <div class="invalid-feedback" *ngIf="email.touched && email.invalid">
+        <mat-hint align="end">example@test.com</mat-hint>
+        <mat-error *ngIf="email.touched && email.invalid">
             Invalid email
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-          <label for="dateControl">Date of birth</label>
-          <input
-            id="dateControl"
-            formControlName="birthdate"
-            type="date"
-            class="form-control"
-            [ngClass]="{'is-invalid': email.touched && email.invalid}"
-            required
-          >
-          <div class="invalid-feedback" *ngIf="birthdate.touched && birthdate.invalid">
-              Invalid date of birth
-          </div>
-        </div>
-    </div>
+        </mat-error>
+      </mat-form-field>
 
-    <button
-      class="btn btn-primary"
-      (click)="addUser()"
-      [disabled]="!form.valid">
+    <mat-form-field>
+        <input
+          type="date"
+          required
+          matInput
+          formControlName="birthdate"
+          class="form-control"
+          [ngClass]="{'is-invalid': birthdate.touched && birthdate.invalid}"
+          id="dateControl"
+          placeholder="Date of birth"
+        >
+        <mat-error *ngIf="birthdate.touched && birthdate.invalid">
+            Invalid date of birth
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addUser()"
+        [disabled]="!form.valid">
         Send
-    </button>
+      </button>
   </form>

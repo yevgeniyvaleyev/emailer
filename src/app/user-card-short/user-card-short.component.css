@@ -1,0 +1,9 @@
+.action-btn {
+  float: right;
+}
+.content {
+  position: relative;
+  top: 8px;
+  left: 8px;
+  float: left;
+}

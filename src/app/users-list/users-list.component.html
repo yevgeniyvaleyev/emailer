@@ -1,20 +1,17 @@
-<div class="row">
-    <add-user class="col-12" (onAdd)="addUser($event)"></add-user>
-</div>
-<div class="row">
-    <ul class="list-group col-sm-9">
-        <li
-          *ngFor="let user of users"
-          (click)="openUserDetails(user.id)"
-          class="list-group-item">
-            <user-card-short
-              [user]="user"
-              (onDelete)="deleteUser($event)"
-              class="col-6">
-            </user-card-short>
-        </li>
-        <li *ngIf="users.length === 0" >
-          <em>Users collection is empty</em>
-        </li>
-      </ul>
-</div>
+<mat-card class="add-user-container">
+    <add-user (onAdd)="addUser($event)"></add-user>
+</mat-card>
+<mat-list>
+    <mat-list-item
+      (click)="openUserDetails(user.id)"
+      *ngFor="let user of users">
+      <user-card-short
+        matLine
+        [user]="user"
+        (onDelete)="deleteUser($event)">
+      </user-card-short>
+    </mat-list-item>
+    <mat-list-item *ngIf="users.length === 0" >
+      <em>Users collection is empty</em>
+    </mat-list-item>
+</mat-list>

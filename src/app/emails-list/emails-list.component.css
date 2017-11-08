@@ -1,3 +1,7 @@
+.mat-list-item {
+  border-bottom: 1px solid whitesmoke;
+}
+
 .mat-list-item:hover {
   background: #f8f5fd;
   cursor: pointer;

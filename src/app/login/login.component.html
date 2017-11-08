@@ -1,6 +1,5 @@
-<div class="row">
-  <div class="col-4 offset-4">
-    <form [formGroup]="form">
+<div class="login-screen">
+  <form [formGroup]="form">
       <mat-form-field>
         <input
           type="email"
@@ -34,6 +33,7 @@
       </mat-form-field>
       <button
         mat-raised-button
+        color="primary"
         (click)="login()"
         [disabled]="!form.valid"
         class="btn btn-primary">
@@ -41,4 +41,3 @@
       </button>
     </form>
   </div>
-</div>

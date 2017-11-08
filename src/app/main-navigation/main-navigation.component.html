@@ -1,5 +1,4 @@
-<mat-toolbar color="primary">
-  <div *ngIf="isLoggedIn()">
+<mat-toolbar color="primary" [class.not-loggedin]="!isLoggedIn()">
     <button
       routerLinkActive="active"
       routerLink="/users"
@@ -12,10 +11,10 @@
       mat-button>
         Emails
     </button>
-  </div>
-  <button
-    (click)="logout()"
-    mat-button>
-      Logout
-  </button>
+    <div class="spacer"></div>
+    <button
+      (click)="logout()"
+      mat-button>
+        Logout
+    </button>
 </mat-toolbar>
