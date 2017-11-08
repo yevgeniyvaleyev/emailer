@@ -9,6 +9,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, InjectionToken, ReflectiveInjector, Injector, Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatToolbarModule,
+  MatCardModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatListModule
+} from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { UserCardDetailedComponent } from './user-card-detailed/user-card-detailed.component';
@@ -73,9 +84,17 @@ const routes = [
   ],
   imports: [
     BrowserModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

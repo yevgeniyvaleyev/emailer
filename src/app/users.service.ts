@@ -27,14 +27,12 @@ export class UsersService {
 
   removeById (id: string) {
     return this.http
-      .delete(`${this.config.usersApi}/${id}`, {
-        responseType: 'text'
-      })
+      .delete(`${this.config.usersApi}/${id}`);
   }
 
   add (data: UserRequest) {
     return this.http
-      .post(this.config.usersApi, data)
+      .put(this.config.usersApi, data)
   }
 
 }

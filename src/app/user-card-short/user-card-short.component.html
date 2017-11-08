@@ -1,2 +1,7 @@
-  <div class="float-left">{{ user.fullName }}, <em>{{ user.email }}</em></div>
-  <button class="btn btn-outline-secondary float-right" (click)="deleteUser($event)">Delete</button>
+  <div class="content">{{ user.fullName }}, <em>{{ user.email }}</em></div>
+  <button
+    mat-button
+    class="action-btn"
+    (click)="deleteUser($event)">
+    Delete
+  </button>

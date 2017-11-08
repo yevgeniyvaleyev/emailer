@@ -1,8 +1,11 @@
-<div class="card" (click)="toggleSelection($event)">
-    <div class="card-body" [class.selected]="isSelected">
-      <h4 class="card-title">{{ user?.fullName }}</h4>
-      <h6 class="card-subtitle mb-2 text-muted">{{ user?.birthdate | myDateFormat }}</h6>
-      <p class="card-text">{{ user?.email }}</p>
-      <button class="btn btn-outline-secondary" (click)="deleteUser($event)">Delete</button>
-    </div>
-</div>
+<mat-card (click)="toggleSelection($event)" [class.selected]="isSelected">
+  <mat-card-title>{{ user?.fullName }}</mat-card-title>
+  <mat-card-content>
+    <ul>
+      <li>Birthdate: {{ user?.birthdate | myDateFormat }}</li>
+      <li>Email: {{ user?.email }}</li>
+    </ul>
+    <button mat-raised-button (click)="deleteUser($event)">Delete</button>
+  </mat-card-content>
+</mat-card>
+

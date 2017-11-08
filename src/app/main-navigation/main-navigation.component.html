@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/emails">M</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" *ngIf="isLoggedIn()">
-    <ul class="navbar-nav mr-auto">
-      <li routerLinkActive="active" class="nav-item">
-        <a class="nav-link" routerLink="/users">Users</a>
-      </li>
-      <li routerLinkActive="active" class="nav-item">
-        <a class="nav-link" routerLink="/emails">Emails</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-right">
-      <li><a (click)="logout()">Logout</a></li>
-  </ul>
-  </div>
-</nav>
+<mat-toolbar color="primary" [class.not-loggedin]="!isLoggedIn()">
+    <button
+      routerLinkActive="active"
+      routerLink="/users"
+      mat-button>
+        Users
+    </button>
+    <button
+      routerLinkActive="active"
+      routerLink="/emails"
+      mat-button>
+        Emails
+    </button>
+    <div class="spacer"></div>
+    <button
+      (click)="logout()"
+      mat-button>
+        Logout
+    </button>
+</mat-toolbar>
