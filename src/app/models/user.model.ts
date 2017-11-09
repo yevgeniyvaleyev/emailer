@@ -1,11 +1,11 @@
-import { UserResponse } from './../interfaces';
-
+import { UserResponse, Gender } from './../interfaces';
 
 export class User {
 
   id: string;
   fullName: string;
   email: string;
+  gender: Gender;
   birthdate: Date;
 
   constructor (data: UserResponse) {
@@ -16,9 +16,11 @@ export class User {
     this.fullName = data.fullName;
     this.email = data.email;
     this.birthdate = new Date(data.birthdate);
+    this.gender = data.gender;
   }
 
   isValidData (data: UserResponse) {
-    return data.fullName && data.id && data.email && data.birthdate;
+    return data.fullName && data.id
+      && data.email && data.birthdate && data.gender;
   }
 }

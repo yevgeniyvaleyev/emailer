@@ -4,6 +4,7 @@
     <ul>
       <li>Birthdate: {{ user?.birthdate | myDateFormat }}</li>
       <li>Email: {{ user?.email }}</li>
+      <li>Gender: {{ user?.gender }}</li>
     </ul>
     <button mat-raised-button (click)="deleteUser($event)">Delete</button>
   </mat-card-content>

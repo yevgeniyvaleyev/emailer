@@ -29,6 +29,7 @@ function generateUser(data) {
     birthdate: new Date(data.birthdate).toUTCString(),
     id: generateId(),
     email: data.email,
+    gender: data.gender
   };
   return user;
 }

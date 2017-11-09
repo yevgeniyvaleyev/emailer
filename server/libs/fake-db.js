@@ -62,12 +62,14 @@ const users = [
     id: generateId(),
     fullName: "Sam Smith",
     birthdate: new Date().toUTCString(),
+    gender: 'female',
     email: "sam@example.com"
   },
   {
     id: generateId(),
     fullName: "Mike Rosendal",
     birthdate: new Date().toUTCString(),
+    gender: 'male',
     email: "mike@example.com"
   },
 ]

@@ -2,7 +2,7 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { email } from './../validators/patterns';
-import { UserNameValidators } from './../validators/username.validator';
+import { UserValidators } from './../validators/user.validator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   form = new FormGroup({
     password: new FormControl('', Validators.required),
     email: new FormControl('', [
-      UserNameValidators.correctEmail,
+      UserValidators.correctEmail,
       Validators.required
     ])
   })

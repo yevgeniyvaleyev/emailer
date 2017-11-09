@@ -17,7 +17,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatSelectModule
 } from '@angular/material';
 
 
@@ -91,6 +92,7 @@ const routes = [
     MatSidenavModule,
     MatListModule,
     MatCardModule,
+    MatSelectModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

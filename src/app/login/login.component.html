@@ -13,7 +13,12 @@
         >
         <mat-hint align="end">test@example.com</mat-hint>
         <mat-error *ngIf="email.touched && email.invalid">
-          Invalid email
+          <div *ngIf="email.errors.required">
+            Email is required
+          </div>
+          <div *ngIf="email.errors.correctEmail">
+            Invalid email
+          </div>
         </mat-error>
       </mat-form-field>
       <mat-form-field>
