@@ -29,15 +29,16 @@ export class UserValidators {
     }
   }
 
-  isUniqueEmail (control: AbstractControl): Observable<null|any> {
-    const invalid = { isUniqueEmail: true };
+  isUniqueEmail () {
+    return (control: AbstractControl): Observable<null|any> => {
+      const invalid = { isUniqueEmail: true };
 
-    return this.userService
-      .isUniqueEmail(control.value)
-      .delay(1000)
-      .switchMap((isUnique: boolean) =>
-        Observable.of(isUnique ? null : invalid)
-      )
+      return this.userService
+        .isUniqueEmail(control.value)
+        .delay(1000)
+        .switchMap((isUnique: boolean) =>
+          Observable.of(isUnique ? null : invalid))
+    }
   }
 
   static minAge (minAge: number) {

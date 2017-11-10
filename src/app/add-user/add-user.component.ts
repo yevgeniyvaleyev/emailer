@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit {
       UserValidators.correctEmail,
       Validators.required
     ], [
-      this.userValidators.isUniqueEmail.bind(this.userValidators)
+      this.userValidators.isUniqueEmail()
     ]),
     gender: new FormControl('', [
       Validators.required
