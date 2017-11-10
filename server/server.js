@@ -29,6 +29,7 @@ router.get('/api/emails/:id', emailsApi.get);
 router.get('/api/emails/type/:type', emailsApi.getAllByType);
 
 router.get('/api/users', usersApi.getAll);
+router.get('/api/users/by-email/:email', usersApi.getAllUsersByEmail);
 router.get('/api/users/:id', usersApi.get);
 router.delete('/api/users/:id', usersApi.delete);
 router.put('/api/users', usersApi.put);

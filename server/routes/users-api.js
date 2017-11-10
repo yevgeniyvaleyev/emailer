@@ -21,6 +21,12 @@ module.exports.get = async (ctx) => {
   ctx.body = item;
 };
 
+module.exports.getAllUsersByEmail = async (ctx) => {
+  const users = db.getAllUsers();
+
+  ctx.body = users.filter(user => user.email === ctx.params.email);
+};
+
 module.exports.put = async (ctx) => {
   const {
     fullName,

@@ -1,3 +1,4 @@
+import { UserValidators } from './validators/user.validator';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { EmailsService } from './emails.service';
@@ -104,6 +105,7 @@ const routes = [
     EmailsService,
     AuthGuardService,
     AuthService,
+    UserValidators,
     { provide: APP_CONFIG, useValue: APP_CONFIG_DATA }
   ],
   bootstrap: [AppComponent]

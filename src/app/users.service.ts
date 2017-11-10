@@ -35,4 +35,10 @@ export class UsersService {
       .put(this.config.usersApi, data)
   }
 
+  isUniqueEmail (email: string) {
+    return this.http
+      .get(`${this.config.usersApi}/by-email/${email}`)
+      .map((users: UserResponse[]) => users.length === 0)
+  }
+
 }
