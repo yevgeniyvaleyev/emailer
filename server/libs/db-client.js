@@ -20,7 +20,7 @@ function hasRequiredFields(data) {
   return requiredFields.every((field) => data[field] !== undefined);
 }
 
-function generateUser(data) {
+function generateUser(data, boxId) {
   if (!hasRequiredFields(data)) {
     throw new Error('Data for new user is invalid');
   }
@@ -29,33 +29,47 @@ function generateUser(data) {
     birthdate: new Date(data.birthdate).toUTCString(),
     id: generateId(),
     email: data.email,
-    gender: data.gender
+    gender: data.gender,
+    boxId
   };
   return user;
 }
 
-function getAllEmails() {
-  return db.emails;
+function getAllEmails(boxId) {
+  return db.emails.filter((email) => email.boxId === boxId);
+}
+
+function searchEmails(term, type, boxId) {
+  return db.emails.filter((email) =>
+    email.status === type &&
+    boxId === email.boxId &&
+    (email.subject.includes(term) || email.body.includes(term))
+  );
 }
 
 function findEmailById(id) {
-  return findById(id, 'emails');;
+  return findById(id, 'emails');
 }
 
-function findEmailByType(type) {
-  return db.emails.filter((email) => email.status === type);
+function findEmailByType(type, boxId) {
+  return db.emails.filter((email) =>
+    email.status === type && boxId === email.boxId);
 }
 
-function getAllUsers() {
-  return db.users;
+function deleteEmail(id) {
+  return removeById(id, 'emails');
+}
+
+function getAllUsers(boxId) {
+  return db.users.filter((user) => boxId === user.boxId);
 }
 
 function findUserById(id) {
   return findById(id, 'users');
 }
 
-function addUser(data) {
-  const user = generateUser(data);
+function addUser(data, boxId) {
+  const user = generateUser(data, boxId);
   db.users.push(user);
   return user;
 }
@@ -64,13 +78,20 @@ function deleteUser(id) {
   return removeById(id, 'users');
 }
 
+function getAllMailboxes() {
+  return db.mailboxes;
+}
+
 module.exports = {
   getAllEmails,
   findEmailById,
   findEmailByType,
+  searchEmails,
+  deleteEmail,
   getAllUsers,
   findUserById,
   addUser,
-  deleteUser
+  deleteUser,
+  getAllMailboxes
 };
 

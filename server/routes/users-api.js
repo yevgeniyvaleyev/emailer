@@ -8,11 +8,11 @@ function generateCustomError(message, status) {
 }
 
 module.exports.getAll = async (ctx) => {
-  ctx.body = db.getAllUsers();
+  ctx.body = db.getAllUsers(Number(ctx.params.boxid));
 };
 
 module.exports.get = async (ctx) => {
-  const item = db.findUserById(ctx.params.id);
+  const item = db.findUserById(ctx.params.id, Number(ctx.params.boxid));
 
   if (!item) {
     generateCustomError('User does not exist', 404);
@@ -22,7 +22,7 @@ module.exports.get = async (ctx) => {
 };
 
 module.exports.getAllUsersByEmail = async (ctx) => {
-  const users = db.getAllUsers();
+  const users = db.getAllUsers(Number(ctx.params.boxid));
 
   ctx.body = users.filter(user => user.email === ctx.params.email);
 };
@@ -48,15 +48,15 @@ module.exports.put = async (ctx) => {
     email,
     gender
   };
-  ctx.body = db.addUser(userData);
+  ctx.body = db.addUser(userData, Number(ctx.params.boxid));
 };
 
 module.exports.delete = async (ctx) => {
-  const item = db.findUserById(ctx.params.id);
+  const item = db.findUserById(ctx.params.id, Number(ctx.params.boxid));
 
     if (!item) {
       generateCustomError('User does not exist', 404);
     }
 
-    ctx.body = db.deleteUser(item.id);
+    ctx.body = db.deleteUser(item.id, Number(ctx.params.boxid));
 };

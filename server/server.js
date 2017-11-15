@@ -11,6 +11,7 @@ const argv = require('yargs').argv;
 const isProduction = !!argv.production;
 const emailsApi = require('./routes/emails-api');
 const usersApi = require('./routes/users-api');
+const mailboxesApi = require('./routes/mailboxes-api');
 const app = new Koa();
 
 const middlewares = fs.readdirSync(path.join(__dirname, 'middlewares')).sort();
@@ -24,14 +25,21 @@ const router = new Router();
 
 app.use(router.routes());
 
-router.get('/api/emails', emailsApi.getAll);
-router.get('/api/emails/:id', emailsApi.get);
-router.get('/api/emails/type/:type', emailsApi.getAllByType);
+const baseUrl = '/api/mailboxes';
+const boxUrl = `${baseUrl}/:boxid`;
 
-router.get('/api/users', usersApi.getAll);
-router.get('/api/users/by-email/:email', usersApi.getAllUsersByEmail);
-router.get('/api/users/:id', usersApi.get);
-router.delete('/api/users/:id', usersApi.delete);
-router.put('/api/users', usersApi.put);
+router.get(baseUrl, mailboxesApi.getAll);
+
+router.get(`${boxUrl}/emails`, emailsApi.getAll);
+router.get(`${boxUrl}/emails/search`, emailsApi.search);
+router.get(`${boxUrl}/emails/:id`, emailsApi.get);
+router.get(`${boxUrl}/emails/type/:type`, emailsApi.getAllByType);
+router.delete(`${boxUrl}/emails`, emailsApi.deleteSelected);
+
+router.get(`${boxUrl}/contacts`, usersApi.getAll);
+router.get(`${boxUrl}/contacts/by-email/:email`, usersApi.getAllUsersByEmail);
+router.get(`${boxUrl}/contacts/:id`, usersApi.get);
+router.delete(`${boxUrl}/contacts/:id`, usersApi.delete);
+router.put(`${boxUrl}/contacts`, usersApi.put);
 
 module.exports = app;

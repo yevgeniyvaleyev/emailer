@@ -23,3 +23,9 @@ export interface EmailData {
   date: string;
   body: string;
 }
+
+export interface MailboxResponse {
+  id: number;
+  email: string;
+  alias?: string;
+}

@@ -2,7 +2,6 @@
   border-bottom: 1px solid whitesmoke;
 }
 .mat-list-item:hover {
-  cursor: pointer;
   background: #f8f5fd;
 }
 .add-user-container {

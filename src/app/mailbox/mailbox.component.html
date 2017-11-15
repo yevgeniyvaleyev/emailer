@@ -1,0 +1,15 @@
+<mat-toolbar id="mailbox-nav" color="primary">
+    <button
+      routerLinkActive="active"
+      [routerLink]="['users']"
+      mat-button>
+        Users
+    </button>
+    <button
+      routerLinkActive="active"
+      [routerLink]="['emails']"
+      mat-button>
+        Emails
+    </button>
+</mat-toolbar>
+<router-outlet></router-outlet>

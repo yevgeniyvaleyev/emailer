@@ -36,10 +36,6 @@ export class UsersListComponent implements OnInit {
       .subscribe(() => this.getUsers())
   }
 
-  openUserDetails (id: string) {
-    this.router.navigate([`/users/${id}`]);
-  }
-
   addUser (data: UserRequest) {
     this.usersService
       .add({

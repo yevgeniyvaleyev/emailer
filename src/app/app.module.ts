@@ -1,3 +1,4 @@
+import { MailboxService } from './mailbox.service';
 import { UserValidators } from './validators/user.validator';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -19,6 +20,8 @@ import {
   MatInputModule,
   MatSidenavModule,
   MatListModule,
+  MatMenuModule,
+  MatCheckboxModule,
   MatSelectModule
 } from '@angular/material';
 
@@ -36,31 +39,45 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
 import { UserCardShortComponent } from './user-card-short/user-card-short.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EmailsPageComponent } from './emails-page/emails-page.component';
+import { MailboxComponent } from './mailbox/mailbox.component';
 
+const pages = [
+  { path: '', redirectTo: 'emails/inbox', pathMatch: 'full' },
+  {
+    path: 'emails',
+    component: EmailsPageComponent,
+    children: [
+      { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+      {
+        path: ':type', children: [
+          { path: '', component: EmailsListComponent },
+          { path: ':id', component: EmailComponent }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'users',
+    children: [
+      { path: '', component: UsersListComponent },
+      { path: ':id', component: UserDetailsComponent }
+    ]
+  }
+];
 const routes = [
   {
     path: '',
     canActivate: [AuthGuardService],
     children: [
-      { path: '', redirectTo: '/emails/inbox', pathMatch: 'full' },
+      { path: '', redirectTo: 'mailbox/0', pathMatch: 'full' },
       {
-        path: 'emails',
-        component: EmailsPageComponent,
+        path: 'mailbox',
         children: [
-          { path: '', redirectTo: 'inbox', pathMatch: 'full' },
           {
-            path: ':type', children: [
-              { path: '', component: EmailsListComponent },
-              { path: ':id', component: EmailComponent }
-            ]
+            path: ':boxid',
+            component: MailboxComponent,
+            children: pages
           }
-        ]
-      },
-      {
-        path: 'users',
-        children: [
-          { path: '', component: UsersListComponent },
-          { path: ':id', component: UserDetailsComponent }
         ]
       }
     ]
@@ -82,7 +99,8 @@ const routes = [
     MainNavigationComponent,
     UserCardShortComponent,
     UserDetailsComponent,
-    EmailsPageComponent
+    EmailsPageComponent,
+    MailboxComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +112,8 @@ const routes = [
     MatListModule,
     MatCardModule,
     MatSelectModule,
+    MatMenuModule,
+    MatCheckboxModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -105,6 +125,7 @@ const routes = [
     EmailsService,
     AuthGuardService,
     AuthService,
+    MailboxService,
     UserValidators,
     { provide: APP_CONFIG, useValue: APP_CONFIG_DATA }
   ],

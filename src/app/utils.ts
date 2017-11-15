@@ -11,8 +11,7 @@ export function getAge(birthDateString: string): number {
   let age = today.getFullYear() - birthDate.getFullYear();
   var month = today.getMonth() - birthDate.getMonth();
   const isBeforeBirthDay = month < 0 || (month === 0 && today.getDate() < birthDate.getDate());
-  if (isBeforeBirthDay) {
-      age--;
-  }
+  age = isBeforeBirthDay ? age - 1 : age;
+
   return age;
 }
