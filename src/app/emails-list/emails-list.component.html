@@ -1,25 +1,35 @@
-<mat-toolbar>
-  <input
-    type="text"
-    required
-    (input)="searchStream.next($event.target.value)"
-    matInput
-    id="searchControl"
-    placeholder="Search emails"
-  >
-  <button
-    (click)="deleteSelected()"
-    *ngIf="selectedIds.length > 0"
-    mat-button>
-      Delete
-  </button>
-</mat-toolbar>
+
+  <form>
+      <mat-form-field>
+          <input
+            type="text"
+            (input)="search($event.target.value)"
+            matInput
+            id="searchControl"
+            placeholder="Search emails"
+          >
+      </mat-form-field>
+      <button
+      (click)="deleteSelected()"
+      *ngIf="selectedIds.length > 0"
+      mat-button>
+        Delete selected
+    </button>
+  </form>
 <mat-list>
     <mat-list-item *ngFor="let email of emails">
-      <mat-checkbox (change)="selectEmail($event.checked, email.id)"></mat-checkbox>
+      <mat-checkbox
+        (change)="selectEmail($event.checked, email.id)">
+      </mat-checkbox>
       <a mat-button [routerLink]="[email.id]">
           {{ email.subject }}, {{ email.date | myDateFormat }}
       </a>
+      <div class="spacer"></div>
+      <button
+        (click)="delete(email.id)"
+        mat-button>
+          Delete
+    </button>
     </mat-list-item>
     <mat-list-item *ngIf="emails?.length === 0" >
       <em>Collection is empty</em>

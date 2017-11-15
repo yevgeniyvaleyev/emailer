@@ -21,44 +21,58 @@ export class EmailsListComponent implements OnInit {
 
   selectedIds: number[] = [];
   emails: Email[];
-  emailsStream: Observable<Email[]>;
+  searchStream: Observable<Email[]>;
+  deleteStream: Observable<boolean>;
   type: string;
-  searchStream = new Subject<string>();
+  searchSubject = new Subject<string>();
+  deleteSubject = new Subject<number|number[]>();
 
   constructor(
     private route: ActivatedRoute,
     private emailsServise: EmailsService
   ) {
-    this.emailsStream = this.searchStream
+    this.searchStream = this.searchSubject
       .debounceTime(500)
       .distinctUntilChanged()
       .switchMap((term) =>
-        this.emailsServise.search(term, this.type))
+        this.emailsServise.search(term, this.type));
+
+    this.deleteStream = this.deleteSubject
+      .switchMap((data) => Array.isArray(data) ?
+        this.emailsServise.deleteSelected(data) :
+        this.emailsServise.delete(data))
   }
 
   ngOnInit() {
-    this.route.params.switchMap(({type}) => {
+    this.route.params
+    .map(({type}) => {
       this.type = type;
-      return this.emailsServise.getAllByType(type)
     })
-    .merge(this.emailsStream)
+    .merge(this.deleteStream)
+    .switchMap(() => this.emailsServise.getAllByType(this.type))
+    .merge(this.searchStream)
     .subscribe((emails: Email[]) => this.emails = emails)
   }
 
-  selectEmail (checked: boolean, id: number) {
-    if (checked) {
+  selectEmail (isChecked: boolean, id: number) {
+    if (isChecked) {
       this.selectedIds = [...this.selectedIds, id];
-    } else {
-      const index = this.selectedIds.indexOf(id);
-      this.selectedIds = removeItemFromList(this.selectedIds, index);
+      return;
     }
+    const index = this.selectedIds.indexOf(id);
+    this.selectedIds = removeItemFromList(this.selectedIds, index);
+  }
+
+  search (term: string) {
+    this.searchSubject.next(term)
+  }
+
+  delete (id: number) {
+    this.deleteSubject.next(id);
   }
 
   deleteSelected () {
-    this.emailsServise
-      .deleteSelected(this.selectedIds)
-      .switchMap(() => this.emailsServise.getAllByType(this.type))
-      .subscribe((emails: Email[]) => this.emails = emails)
+    this.deleteSubject.next(this.selectedIds);
   }
 
 }

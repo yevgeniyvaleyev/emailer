@@ -47,6 +47,12 @@ export class EmailsService {
       .map((status: boolean) => status);
   }
 
+  delete (id: number): Observable<boolean> {
+    return this.http
+      .delete(`${this.getEmailsApi()}/${id}`)
+      .map((status: boolean) => status);
+  }
+
   get (id: number): Observable<Email> {
     return this.http
       .get(`${this.getEmailsApi()}/${id}`)
