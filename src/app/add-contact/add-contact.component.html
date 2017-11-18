@@ -1,27 +1,5 @@
 <form [formGroup]="form">
     <mat-form-field>
-      <input
-        type="text"
-        required
-        matInput
-        formControlName="fullName"
-        id="fullNameControl"
-        placeholder="Full name"
-      >
-      <mat-hint align="end">John Smith</mat-hint>
-      <mat-error *ngIf="fullName.touched && fullName.invalid">
-          <div *ngIf="fullName.errors.required">
-              Full name is required
-          </div>
-          <div *ngIf="fullName.errors.fullName">
-            Full name has to be minimum 5 characters
-            and have whitespace between words,
-            each word has to start with capital letter
-          </div>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
         <input
           type="email"
           required
@@ -45,10 +23,20 @@
         </mat-error>
       </mat-form-field>
 
+  <mat-form-field>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        id="nameControl"
+        placeholder="Name"
+      >
+    </mat-form-field>
+
       <button
         mat-raised-button
         color="primary"
-        (click)="addUser()"
+        (click)="addContact()"
         [disabled]="!form.valid">
         Send
       </button>

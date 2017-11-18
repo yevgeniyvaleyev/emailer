@@ -1,15 +1,15 @@
 import { MailboxService } from './mailbox.service';
-import { User } from './models/user.model';
+import { Contact } from './models/contact.model';
 import { AppConfig } from './config/interfaces';
 import { APP_CONFIG } from './config/tokens';
-import { UserResponse, UserRequest } from './interfaces';
+import { ContactResponse, ContactRequest } from './interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector, Inject, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class UsersService {
+export class ContactsService {
 
   constructor(
     private http: HttpClient,
@@ -17,38 +17,38 @@ export class UsersService {
     @Inject(APP_CONFIG) private config: AppConfig
   ) {}
 
-  private getUsersApi () {
-    return this.mailboxService.getBaseApi() + this.config.usersApi;
+  private getContactsApi () {
+    return this.mailboxService.getBaseApi() + this.config.contactsApi;
   }
 
   getAll () {
     return this.http
-      .get(this.getUsersApi())
-      .map((response: UserResponse[]) =>
-        response.map(data => new User(data)))
+      .get(this.getContactsApi())
+      .map((response: ContactResponse[]) =>
+        response.map(data => new Contact(data)))
   }
 
   get (id: string) {
     return this.http
-      .get(`${this.getUsersApi()}/${id}`)
-      .map((data: UserResponse) => new User(data))
+      .get(`${this.getContactsApi()}/${id}`)
+      .map((data: ContactResponse) => new Contact(data))
   }
 
   removeById (id: string) {
     return this.http
-      .delete(`${this.getUsersApi()}/${id}`);
+      .delete(`${this.getContactsApi()}/${id}`);
   }
 
-  add (data: UserRequest) {
+  add (data: ContactRequest) {
     return this.http
-      .put(this.getUsersApi(), data)
+      .put(this.getContactsApi(), data)
   }
 
   isUniqueEmail (email: string) {
     return this.http
-      .get(`${this.getUsersApi()}/by-email/${email}`)
+      .get(`${this.getContactsApi()}/by-email/${email}`)
       .delay(1000) // for demonstration
-      .map((users: UserResponse[]) => users.length === 0)
+      .map((contacts: ContactResponse[]) => contacts.length === 0)
   }
 
 }

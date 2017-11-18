@@ -1,0 +1,21 @@
+<mat-card class="add-contact-container">
+    <add-contact (onAdd)="addContact($event)"></add-contact>
+</mat-card>
+<mat-list>
+    <mat-list-item
+      *ngFor="let contact of contacts">
+        <a mat-button [routerLink]="[contact.id]">
+          {{ contact.name }}, <em>{{ contact.email }}</em>
+        </a>
+        <div class="spacer"></div>
+        <button
+          mat-button
+          class="action-btn"
+          (click)="deleteContact(contact)">
+          Delete
+        </button>
+    </mat-list-item>
+    <mat-list-item *ngIf="contacts.length === 0" >
+      <em>Collection is empty</em>
+    </mat-list-item>
+</mat-list>

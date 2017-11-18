@@ -1,0 +1,10 @@
+<mat-card (click)="toggleSelection($event)" [class.selected]="isSelected">
+  <mat-card-title>{{ contact?.name }}</mat-card-title>
+  <mat-card-content>
+    <ul>
+      <li>Email: {{ contact?.email }}</li>
+    </ul>
+    <button mat-raised-button (click)="deleteContact($event)">Delete</button>
+  </mat-card-content>
+</mat-card>
+

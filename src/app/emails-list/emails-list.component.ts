@@ -1,4 +1,4 @@
-import { User } from './../models/user.model';
+import { Contact } from './../models/contact.model';
 import { Email } from './../models/email.model';
 import { EmailsService } from './../emails.service';
 import { Component, OnInit } from '@angular/core';

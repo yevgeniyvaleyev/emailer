@@ -1,5 +1,5 @@
 export interface AppConfig {
-  usersApi: string,
+  contactsApi: string,
   emailsApi: string,
   mailboxesApi: string
 }

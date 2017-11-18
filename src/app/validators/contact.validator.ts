@@ -1,4 +1,4 @@
-import { UsersService } from './../users.service';
+import { ContactsService } from './../contacts.service';
 import { Observable } from 'rxjs/Observable';
 import { email, fullName } from './patterns';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/delay';
 
 @Injectable()
-export class UserValidators {
+export class ContactValidators {
 
-  constructor (private userService: UsersService) {}
+  constructor (private contactService: ContactsService) {}
 
   static fullName (control: AbstractControl): ValidationErrors | null {
     if (fullName.test(control.value)) {
@@ -33,7 +33,7 @@ export class UserValidators {
     return (control: AbstractControl): Observable<null|any> => {
       const invalid = { isUniqueEmail: true };
 
-      return this.userService
+      return this.contactService
         .isUniqueEmail(control.value)
         .switchMap((isUnique: boolean) =>
           Observable.of(isUnique ? null : invalid))

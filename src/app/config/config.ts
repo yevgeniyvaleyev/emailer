@@ -1,7 +1,7 @@
 import { AppConfig } from './interfaces';
 
 export const APP_CONFIG_DATA: AppConfig = {
-  usersApi: '/contacts',
+  contactsApi: '/contacts',
   mailboxesApi: '/api/mailboxes',
   emailsApi: '/emails'
 }

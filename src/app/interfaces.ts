@@ -1,14 +1,14 @@
 
-export interface UserSelectionData {
+export interface ContactSelectionData {
   id: string
 }
 
-export interface UserRequest {
-  fullName: string;
+export interface ContactRequest {
+  name: string;
   email: string;
 }
 
-export interface UserResponse extends UserRequest {
+export interface ContactResponse extends ContactRequest {
   id: string;
 }
 

@@ -1,11 +1,11 @@
 import { MailboxService } from './mailbox.service';
-import { UserValidators } from './validators/user.validator';
+import { ContactValidators } from './validators/contact.validator';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { EmailsService } from './emails.service';
 import { APP_CONFIG_DATA } from './config/config';
 import { APP_CONFIG } from './config/tokens';
-import { UsersService } from './users.service';
+import { ContactsService } from './contacts.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, InjectionToken, ReflectiveInjector, Injector, Component } from '@angular/core';
@@ -27,17 +27,17 @@ import {
 
 
 import { AppComponent } from './app.component';
-import { UserCardDetailedComponent } from './user-card-detailed/user-card-detailed.component';
+import { ContactCardDetailedComponent } from './contact-card-detailed/contact-card-detailed.component';
 import { MyDateFormatPipe } from './date-format.pipe';
-import { AddUserComponent } from './add-user/add-user.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
 import { EmailsListComponent } from './emails-list/emails-list.component';
 import { LoginComponent } from './login/login.component';
-import { UsersListComponent } from './users-list/users-list.component';
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { EmailsNavigationComponent } from './emails-page/navigation/navigation.component';
 import { EmailComponent } from './email/email.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
-import { UserCardShortComponent } from './user-card-short/user-card-short.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
+import { ContactCardShortComponent } from './contact-card-short/contact-card-short.component';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { EmailsPageComponent } from './emails-page/emails-page.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
 
@@ -57,10 +57,10 @@ const pages = [
     ]
   },
   {
-    path: 'users',
+    path: 'contacts',
     children: [
-      { path: '', component: UsersListComponent },
-      { path: ':id', component: UserDetailsComponent }
+      { path: '', component: ContactsListComponent },
+      { path: ':id', component: ContactDetailsComponent }
     ]
   }
 ];
@@ -88,17 +88,17 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserCardDetailedComponent,
+    ContactCardDetailedComponent,
     MyDateFormatPipe,
-    AddUserComponent,
+    AddContactComponent,
     EmailsListComponent,
     LoginComponent,
-    UsersListComponent,
+    ContactsListComponent,
     EmailsNavigationComponent,
     EmailComponent,
     MainNavigationComponent,
-    UserCardShortComponent,
-    UserDetailsComponent,
+    ContactCardShortComponent,
+    ContactDetailsComponent,
     EmailsPageComponent,
     MailboxComponent
   ],
@@ -121,12 +121,12 @@ const routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    UsersService,
+    ContactsService,
     EmailsService,
     AuthGuardService,
     AuthService,
     MailboxService,
-    UserValidators,
+    ContactValidators,
     { provide: APP_CONFIG, useValue: APP_CONFIG_DATA }
   ],
   bootstrap: [AppComponent]

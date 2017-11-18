@@ -29,19 +29,19 @@ module.exports.getAllUsersByEmail = async (ctx) => {
 
 module.exports.put = async (ctx) => {
   const {
-    fullName,
+    name,
     email,
   } = ctx.request.body;
 
   // TODO: add proper email validator
   // TODO: add proper full name validator
 
-  if (!fullName || !email) {
+  if (!email) {
     generateCustomError('Invalid user data', 400);
   }
 
   const userData = {
-    fullName,
+    name: name || '',
     email
   };
   ctx.body = db.addUser(userData, Number(ctx.params.boxid));

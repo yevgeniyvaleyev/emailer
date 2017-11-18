@@ -4,6 +4,9 @@
 .mat-list-item:hover {
   background: #f8f5fd;
 }
-.add-user-container {
+.add-contact-container {
   text-align: center;
+}
+.spacer {
+  flex: 1 1 auto;
 }

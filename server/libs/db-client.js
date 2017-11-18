@@ -15,7 +15,7 @@ function removeById(id, type) {
 }
 
 function hasRequiredFields(data) {
-  const requiredFields = ['fullName', 'email'];
+  const requiredFields = ['email'];
 
   return requiredFields.every((field) => data[field] !== undefined);
 }
@@ -25,7 +25,7 @@ function generateUser(data, boxId) {
     throw new Error('Data for new user is invalid');
   }
   const user = {
-    fullName: data.fullName,
+    name: data.name,
     id: generateId(),
     email: data.email,
     boxId
