@@ -5,11 +5,13 @@ import { AppConfig } from './config/interfaces';
 import { APP_CONFIG } from './config/tokens';
 import { Injectable, Injector, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class MailboxService {
 
   private _currentId: number;
+  private updateStream = new Subject<number>();
 
   constructor(
     private http: HttpClient,
@@ -29,10 +31,15 @@ export class MailboxService {
 
   set currentId (id: number) {
     this._currentId = Number(id);
+    this.updateStream.next(id);
   }
 
   get currentId (): number {
     return this._currentId;
+  }
+
+  getId (): Observable<number> {
+    return this.updateStream;
   }
 
 }

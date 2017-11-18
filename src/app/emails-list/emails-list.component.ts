@@ -1,3 +1,4 @@
+import { MailboxService } from './../mailbox.service';
 import { Contact } from './../models/contact.model';
 import { Email } from './../models/email.model';
 import { EmailsService } from './../emails.service';
@@ -29,7 +30,8 @@ export class EmailsListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private emailsServise: EmailsService
+    private emailsServise: EmailsService,
+    private mailboxService: MailboxService
   ) {
     this.searchStream = this.searchSubject
       .debounceTime(500)
@@ -49,6 +51,7 @@ export class EmailsListComponent implements OnInit {
       this.type = type;
     })
     .merge(this.deleteStream)
+    .merge(this.mailboxService.getId())
     .switchMap(() => this.emailsServise.getAllByType(this.type))
     .merge(this.searchStream)
     .subscribe((emails: Email[]) => this.emails = emails)
