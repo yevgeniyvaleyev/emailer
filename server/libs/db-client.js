@@ -15,7 +15,7 @@ function removeById(id, type) {
 }
 
 function hasRequiredFields(data) {
-  const requiredFields = ['fullName', 'birthdate', 'email'];
+  const requiredFields = ['fullName', 'email'];
 
   return requiredFields.every((field) => data[field] !== undefined);
 }
@@ -26,10 +26,8 @@ function generateUser(data, boxId) {
   }
   const user = {
     fullName: data.fullName,
-    birthdate: new Date(data.birthdate).toUTCString(),
     id: generateId(),
     email: data.email,
-    gender: data.gender,
     boxId
   };
   return user;

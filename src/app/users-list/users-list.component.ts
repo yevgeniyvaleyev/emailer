@@ -38,10 +38,7 @@ export class UsersListComponent implements OnInit {
 
   addUser (data: UserRequest) {
     this.usersService
-      .add({
-        ...data,
-        birthdate: new Date(data.birthdate).toUTCString()
-      })
+      .add(data)
       .subscribe(() => this.getUsers());
   }
 

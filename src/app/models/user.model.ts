@@ -1,26 +1,21 @@
-import { UserResponse, Gender } from './../interfaces';
+import { UserResponse } from './../interfaces';
 
 export class User {
 
   id: string;
   fullName: string;
   email: string;
-  gender: Gender;
-  birthdate: Date;
 
   constructor (data: UserResponse) {
     if (!this.isValidData(data)) {
       throw new Error('User data is not valid')
     }
     this.id = data.id;
-    this.fullName = data.fullName;
+    this.fullName = data.fullName || data.email;
     this.email = data.email;
-    this.birthdate = new Date(data.birthdate);
-    this.gender = data.gender;
   }
 
   isValidData (data: UserResponse) {
-    return data.fullName && data.id
-      && data.email && data.birthdate && data.gender;
+    return data.fullName && data.id && data.email;
   }
 }

@@ -30,23 +30,19 @@ module.exports.getAllUsersByEmail = async (ctx) => {
 module.exports.put = async (ctx) => {
   const {
     fullName,
-    birthdate,
     email,
-    gender
   } = ctx.request.body;
 
   // TODO: add proper email validator
   // TODO: add proper full name validator
 
-  if (!fullName || !gender || !email || isNaN(new Date(birthdate).valueOf())) {
+  if (!fullName || !email) {
     generateCustomError('Invalid user data', 400);
   }
 
   const userData = {
     fullName,
-    birthdate,
-    email,
-    gender
+    email
   };
   ctx.body = db.addUser(userData, Number(ctx.params.boxid));
 };

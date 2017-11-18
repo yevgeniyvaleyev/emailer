@@ -1,6 +1,6 @@
 import { email } from './../validators/patterns';
 import { UserValidators } from './../validators/user.validator';
-import { UserRequest, Gender } from './../interfaces';
+import { UserRequest } from './../interfaces';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -18,18 +18,11 @@ export class AddUserComponent implements OnInit {
       UserValidators.fullName,
       Validators.required
     ]),
-    birthdate: new FormControl('', [
-      Validators.required,
-      UserValidators.minAge(18)
-    ]),
     email: new FormControl('', [
       UserValidators.correctEmail,
       Validators.required
     ], [
       this.userValidators.isUniqueEmail()
-    ]),
-    gender: new FormControl('', [
-      Validators.required
     ])
   })
 
@@ -43,21 +36,6 @@ export class AddUserComponent implements OnInit {
 
   get email () {
     return this.form.get('email');
-  }
-
-  get gender () {
-    return this.form.get('gender');
-  }
-
-  get genders (): Gender[] {
-    return [
-      'male',
-      'female'
-    ]
-  }
-
-  get birthdate () {
-    return this.form.get('birthdate');
   }
 
   addUser () {

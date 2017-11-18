@@ -1,4 +1,3 @@
-export type Gender = 'male' | 'female';
 
 export interface UserSelectionData {
   id: string
@@ -6,8 +5,6 @@ export interface UserSelectionData {
 
 export interface UserRequest {
   fullName: string;
-  birthdate: string;
-  gender: Gender;
   email: string;
 }
 

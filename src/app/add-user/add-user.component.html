@@ -5,7 +5,6 @@
         required
         matInput
         formControlName="fullName"
-        [ngClass]="{'is-invalid': fullName.touched && fullName.invalid}"
         id="fullNameControl"
         placeholder="Full name"
       >
@@ -23,26 +22,11 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select
-        required
-        matInput
-        formControlName="gender"
-        placeholder="Gender">
-          <mat-option
-            *ngFor="let gender of genders"
-            [value]="gender">
-              {{ gender }}
-          </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
         <input
           type="email"
           required
           matInput
           formControlName="email"
-          [ngClass]="{'is-invalid': email.touched && email.invalid}"
           id="emailControl"
           placeholder="Email"
         >
@@ -58,26 +42,6 @@
           <div *ngIf="email.errors.isUniqueEmail">
             Email is already in use
           </div>
-        </mat-error>
-      </mat-form-field>
-
-    <mat-form-field>
-        <input
-          type="date"
-          required
-          matInput
-          formControlName="birthdate"
-          [ngClass]="{'is-invalid': birthdate.touched && birthdate.invalid}"
-          id="dateControl"
-          placeholder="Date of birth"
-        >
-        <mat-error *ngIf="birthdate.touched && birthdate.invalid">
-            <div *ngIf="birthdate.errors.required">
-              Date of birth is required
-            </div>
-            <div *ngIf="birthdate.errors.minAge">
-              User has to be at least 18 years old
-            </div>
         </mat-error>
       </mat-form-field>
 

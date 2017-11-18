@@ -35,7 +35,6 @@ export class UserValidators {
 
       return this.userService
         .isUniqueEmail(control.value)
-        .delay(1000)
         .switchMap((isUnique: boolean) =>
           Observable.of(isUnique ? null : invalid))
     }

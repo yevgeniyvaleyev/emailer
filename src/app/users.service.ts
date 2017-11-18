@@ -47,6 +47,7 @@ export class UsersService {
   isUniqueEmail (email: string) {
     return this.http
       .get(`${this.getUsersApi()}/by-email/${email}`)
+      .delay(1000) // for demonstration
       .map((users: UserResponse[]) => users.length === 0)
   }
 
