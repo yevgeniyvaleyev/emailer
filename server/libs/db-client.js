@@ -72,6 +72,12 @@ function addUser(data, boxId) {
   return user;
 }
 
+function updateUser(data, id, boxId) {
+  const user = findUserById(id);
+  Object.assign(user, data);
+  return user;
+}
+
 function deleteUser(id) {
   return removeById(id, 'users');
 }
@@ -86,10 +92,13 @@ module.exports = {
   findEmailByType,
   searchEmails,
   deleteEmail,
+
   getAllUsers,
+  updateUser,
   findUserById,
   addUser,
   deleteUser,
+
   getAllMailboxes
 };
 

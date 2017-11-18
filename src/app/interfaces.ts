@@ -4,6 +4,7 @@ export interface ContactSelectionData {
 }
 
 export interface ContactRequest {
+  id?: string;
   name: string;
   email: string;
 }

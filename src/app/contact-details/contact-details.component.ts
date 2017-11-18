@@ -1,8 +1,9 @@
+import { ContactSelectionData } from './../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact.model';
 import { ContactsService } from '../contacts.service';
-import { ContactSelectionData, ContactRequest } from '../interfaces';
+import { ContactRequest } from '../interfaces';
 import * as utils from '../utils';
 
 @Component({
@@ -13,6 +14,7 @@ import * as utils from '../utils';
 export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
+  isEditMode: false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +23,18 @@ export class ContactDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.switchMap(({id}) =>
-      this.contactsService.get(id)
-    )
+    this.route.params
+    .switchMap(({id}) => this.contactsService.get(id))
     .subscribe((contact: Contact) => this.contact = contact)
+  }
+
+  updateContact (data: ContactRequest) {
+    this.contactsService
+      .update(this.contact.id, data)
+      .subscribe((contact: Contact) => {
+        this.isEditMode = false;
+        this.contact = contact
+      })
   }
 
   deleteContact ({id}: ContactSelectionData) {

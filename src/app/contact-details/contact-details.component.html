@@ -1,5 +1,12 @@
 <contact-card-detailed
-      class="col-12"
-      (onDelete)="deleteContact($event)"
-      [contact]="contact">
+  *ngIf="!isEditMode"
+  [editable]="true"
+  (onDelete)="deleteContact($event)"
+  (onEdit)="isEditMode = true"
+  [contact]="contact">
 </contact-card-detailed>
+<edit-contact
+  *ngIf="isEditMode"
+  [contact]="contact"
+  (onUpdate)="updateContact($event)">
+</edit-contact>

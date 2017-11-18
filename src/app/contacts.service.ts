@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { MailboxService } from './mailbox.service';
 import { Contact } from './models/contact.model';
 import { AppConfig } from './config/interfaces';
@@ -17,34 +18,42 @@ export class ContactsService {
     @Inject(APP_CONFIG) private config: AppConfig
   ) {}
 
-  private getContactsApi () {
+  private getContactsApi (): string {
     return this.mailboxService.getBaseApi() + this.config.contactsApi;
   }
 
-  getAll () {
+  getAll (): Observable<Contact[]> {
     return this.http
       .get(this.getContactsApi())
       .map((response: ContactResponse[]) =>
         response.map(data => new Contact(data)))
   }
 
-  get (id: string) {
+  get (id: string): Observable<Contact> {
     return this.http
       .get(`${this.getContactsApi()}/${id}`)
       .map((data: ContactResponse) => new Contact(data))
   }
 
-  removeById (id: string) {
+  removeById (id: string): Observable<boolean> {
     return this.http
-      .delete(`${this.getContactsApi()}/${id}`);
+      .delete(`${this.getContactsApi()}/${id}`)
+      .map((status: boolean) => status);
   }
 
-  add (data: ContactRequest) {
+  add (data: ContactRequest): Observable<boolean> {
     return this.http
-      .put(this.getContactsApi(), data)
+      .post(this.getContactsApi(), data)
+      .map((status: boolean) => status);
   }
 
-  isUniqueEmail (email: string) {
+  update (id: string, data: ContactRequest): Observable<Contact> {
+    return this.http
+      .put(`${this.getContactsApi()}/${id}`, data)
+      .map((data: ContactResponse) => new Contact(data))
+  }
+
+  isUniqueEmail (email: string): Observable<boolean> {
     return this.http
       .get(`${this.getContactsApi()}/by-email/${email}`)
       .delay(1000) // for demonstration

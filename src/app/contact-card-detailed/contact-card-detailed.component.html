@@ -1,10 +1,20 @@
-<mat-card (click)="toggleSelection($event)" [class.selected]="isSelected">
+<mat-card>
   <mat-card-title>{{ contact?.name }}</mat-card-title>
   <mat-card-content>
     <ul>
       <li>Email: {{ contact?.email }}</li>
     </ul>
-    <button mat-raised-button (click)="deleteContact($event)">Delete</button>
+    <button
+      mat-raised-button
+      (click)="deleteContact($event)">
+        Delete
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="isEditable"
+      (click)="editContact($event)">
+        Edit
+    </button>
   </mat-card-content>
 </mat-card>
 

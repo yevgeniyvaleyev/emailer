@@ -1,6 +1,7 @@
-<mat-card class="add-contact-container">
-    <add-contact (onAdd)="addContact($event)"></add-contact>
-</mat-card>
+<edit-contact
+  [isNew]="new"
+  (onUpdate)="addContact($event)">
+</edit-contact>
 <mat-list>
     <mat-list-item
       *ngFor="let contact of contacts">

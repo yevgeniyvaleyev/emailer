@@ -16,14 +16,14 @@ export class MailboxService {
     @Inject(APP_CONFIG) private config: AppConfig
   ) {}
 
-  getAll () {
+  getAll (): Observable<Mailbox[]> {
     return this.http
       .get(this.config.mailboxesApi)
       .map((response: MailboxResponse[]) =>
         response.map(data => new Mailbox(data)))
   }
 
-  getBaseApi () {
+  getBaseApi (): string {
     return `${this.config.mailboxesApi}/${this.currentId}`;
   }
 

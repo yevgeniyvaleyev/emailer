@@ -41,6 +41,7 @@ router.get(`${boxUrl}/contacts`, usersApi.getAll);
 router.get(`${boxUrl}/contacts/by-email/:email`, usersApi.getAllUsersByEmail);
 router.get(`${boxUrl}/contacts/:id`, usersApi.get);
 router.delete(`${boxUrl}/contacts/:id`, usersApi.delete);
-router.put(`${boxUrl}/contacts`, usersApi.put);
+router.post(`${boxUrl}/contacts`, usersApi.add);
+router.put(`${boxUrl}/contacts/:id`, usersApi.update);
 
 module.exports = app;

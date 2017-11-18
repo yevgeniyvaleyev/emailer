@@ -10,10 +10,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ContactCardDetailedComponent implements OnInit {
 
   @Input('contact') contact: Contact;
-  @Input('isSelected') isSelected: boolean;
+  @Input('editable') isEditable: Boolean;
   @Output('onDelete') onDelete = new EventEmitter()
-  @Output('onSelect') onSelect = new EventEmitter()
-  @Output('onDeselect') onDeselect = new EventEmitter()
+  @Output('onEdit') onEdit = new EventEmitter()
 
   constructor() { }
 
@@ -28,15 +27,9 @@ export class ContactCardDetailedComponent implements OnInit {
     this.onDelete.emit(this.getContactSelectionData());
   }
 
-  toggleSelection ($event: MouseEvent) {
-    this.isSelected = !this.isSelected;
+  editContact ($event: MouseEvent) {
     $event.stopPropagation();
-
-    if (this.isSelected) {
-      this.onSelect.emit(this.getContactSelectionData());
-      return;
-    }
-    this.onDeselect.emit(this.getContactSelectionData());
+    this.onEdit.emit(this.getContactSelectionData());
   }
 
 }

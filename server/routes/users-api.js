@@ -27,7 +27,7 @@ module.exports.getAllUsersByEmail = async (ctx) => {
   ctx.body = users.filter(user => user.email === ctx.params.email);
 };
 
-module.exports.put = async (ctx) => {
+module.exports.add = async (ctx) => {
   const {
     name,
     email,
@@ -45,6 +45,34 @@ module.exports.put = async (ctx) => {
     email
   };
   ctx.body = db.addUser(userData, Number(ctx.params.boxid));
+};
+
+module.exports.update = async (ctx) => {
+  const {
+    name,
+    email,
+  } = ctx.request.body;
+  const id = Number(ctx.params.id);
+  const boxid = Number(ctx.params.boxid);
+
+  // TODO: add proper email validator
+  // TODO: add proper full name validator
+
+  if (!email) {
+    generateCustomError('Invalid user data', 400);
+  }
+
+  const item = db.findUserById(id, boxid);
+
+  if (!item) {
+    generateCustomError('User does not exist', 404);
+  }
+
+  const userData = {
+    name: name || '',
+    email
+  };
+  ctx.body = db.updateUser(userData, id, boxid);
 };
 
 module.exports.delete = async (ctx) => {
