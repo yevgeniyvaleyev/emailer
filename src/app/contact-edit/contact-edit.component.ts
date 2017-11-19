@@ -10,10 +10,10 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
   templateUrl: './contact-edit.component.html',
   styleUrls: ['./contact-edit.component.css']
 })
-export class AddContactComponent implements OnInit {
+export class EditContactComponent implements OnInit {
 
   @Input('contact') contact?: Contact
-  @Input('isNew') isNew: Contact
+  @Input('isNew') isNew: boolean
   @Output('onUpdate') onUpdate = new EventEmitter();
 
   form: AbstractControl;

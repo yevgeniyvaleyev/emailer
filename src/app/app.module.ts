@@ -30,7 +30,7 @@ import {
 import { AppComponent } from './app.component';
 import { ContactCardDetailedComponent } from './contact-card-detailed/contact-card-detailed.component';
 import { MyDateFormatPipe } from './date-format.pipe';
-import { AddContactComponent } from './contact-edit/contact-edit.component';
+import { EditContactComponent } from './contact-edit/contact-edit.component';
 import { EmailsListComponent } from './emails-list/emails-list.component';
 import { LoginComponent } from './login/login.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
@@ -93,7 +93,7 @@ const routes = [
     AppComponent,
     ContactCardDetailedComponent,
     MyDateFormatPipe,
-    AddContactComponent,
+    EditContactComponent,
     EmailsListComponent,
     LoginComponent,
     ContactsListComponent,
