@@ -1,0 +1,52 @@
+<mat-card>
+    <form [formGroup]="composeEmailForm">
+        <mat-form-field>
+            <input
+              type="email"
+              required
+              matInput
+              id="toControl"
+              [matAutocomplete]="auto"
+              formControlName="to"
+              placeholder="To">
+              <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option
+                    *ngFor="let contact of contacts"
+                    [value]="contact.email">
+                     {{ contact.email }}
+                  </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="to.touched && to.invalid">
+                  <div *ngIf="to.errors.required">
+                    Email is required
+                  </div>
+                  <div *ngIf="to.errors.correctEmail">
+                    Invalid email
+                  </div>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              type="text"
+              formControlName="subject"
+              matInput
+              id="subjectControl"
+              placeholder="Subject">
+        </mat-form-field>
+        <mat-form-field>
+            <textarea
+              id="bodyControl"
+              rows="10"
+              formControlName="body"
+              matInput>
+            </textarea>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          (click)="send()"
+          [disabled]="!composeEmailForm.valid"
+          color="primary">
+            Send
+        </button>
+    </form>
+</mat-card>

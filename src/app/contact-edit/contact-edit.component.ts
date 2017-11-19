@@ -3,12 +3,12 @@ import { email } from './../validators/patterns';
 import { ContactValidators } from './../validators/contact.validator';
 import { ContactRequest } from './../interfaces';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
-  selector: 'edit-contact',
-  templateUrl: './edit-contact.component.html',
-  styleUrls: ['./edit-contact.component.css']
+  selector: 'contact-edit',
+  templateUrl: './contact-edit.component.html',
+  styleUrls: ['./contact-edit.component.css']
 })
 export class AddContactComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class AddContactComponent implements OnInit {
   @Input('isNew') isNew: Contact
   @Output('onUpdate') onUpdate = new EventEmitter();
 
-  form
+  form: AbstractControl;
 
   constructor(private contactValidators: ContactValidators) { }
 

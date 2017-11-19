@@ -1,12 +1,15 @@
-<edit-contact
+<contact-edit
   [isNew]="new"
   (onUpdate)="addContact($event)">
-</edit-contact>
+</contact-edit>
 <mat-list>
     <mat-list-item
       *ngFor="let contact of contacts">
         <a mat-button [routerLink]="[contact.id]">
-          {{ contact.name }}, <em>{{ contact.email }}</em>
+          <span *ngIf="contact.name">
+            {{ contact.name }},
+          </span>
+          <em>{{ contact.email }}</em>
         </a>
         <div class="spacer"></div>
         <button

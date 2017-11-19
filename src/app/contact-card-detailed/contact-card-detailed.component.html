@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>{{ contact?.name }}</mat-card-title>
+  <mat-card-title>{{ contact?.name || contact?.email }}</mat-card-title>
   <mat-card-content>
     <ul>
       <li>Email: {{ contact?.email }}</li>

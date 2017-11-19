@@ -11,7 +11,7 @@ export class Contact {
       throw new Error('Contact data is not valid')
     }
     this.id = data.id;
-    this.name = data.name || data.email;
+    this.name = data.name;
     this.email = data.email;
   }
 

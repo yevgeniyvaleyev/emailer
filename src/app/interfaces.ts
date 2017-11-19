@@ -1,3 +1,4 @@
+import { EmailRequest } from './interfaces';
 
 export interface ContactSelectionData {
   id: string
@@ -13,13 +14,16 @@ export interface ContactResponse extends ContactRequest {
   id: string;
 }
 
-export interface EmailData {
-  id: number;
+export interface EmailRequest {
   subject: string;
-  from: string;
   to: string;
-  date: string;
   body: string;
+}
+
+export interface EmailResponse extends EmailRequest {
+  id: number;
+  from: string;
+  date: string;
 }
 
 export interface MailboxResponse {

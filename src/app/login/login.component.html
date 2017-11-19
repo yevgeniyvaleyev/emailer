@@ -6,8 +6,6 @@
           required
           matInput
           formControlName="email"
-          class="form-control"
-          [ngClass]="{'is-invalid': email.touched && email.invalid}"
           id="emailControl"
           placeholder="Email"
         >
@@ -27,9 +25,7 @@
           required
           matInput
           formControlName="password"
-          class="form-control"
           id="passwordControl"
-          [ngClass]="{'is-invalid': password.touched && password.invalid}"
           placeholder="Password"
         >
         <mat-error *ngIf="password.touched && password.invalid">
@@ -40,8 +36,7 @@
         mat-raised-button
         color="primary"
         (click)="login()"
-        [disabled]="!form.valid"
-        class="btn btn-primary">
+        [disabled]="!form.valid">
           Login
       </button>
     </form>

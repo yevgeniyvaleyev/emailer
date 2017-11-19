@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { MailboxService } from './mailbox.service';
 import { Email } from './models/email.model';
-import { EmailData } from './interfaces';
+import { EmailResponse, EmailRequest } from './interfaces';
 import { AppConfig } from './config/interfaces';
 import { APP_CONFIG } from './config/tokens';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -23,7 +23,7 @@ export class EmailsService {
   getAllByType (type: string): Observable<Email[]> {
     return this.http
       .get(`${this.getEmailsApi()}/type/${type}`)
-      .map((response: EmailData[]) =>
+      .map((response: EmailResponse[]) =>
         response.map(data => new Email(data)))
   }
 
@@ -34,7 +34,7 @@ export class EmailsService {
 
     return this.http
       .get(`${this.getEmailsApi()}/search`, { params })
-      .map((response: EmailData[]) =>
+      .map((response: EmailResponse[]) =>
         response.map(data => new Email(data)))
   }
 
@@ -53,10 +53,16 @@ export class EmailsService {
       .map((status: boolean) => status);
   }
 
+  send (email: EmailRequest): Observable<boolean> {
+    return this.http
+      .post(this.getEmailsApi(), email)
+      .map((status: boolean) => status);
+  }
+
   get (id: number): Observable<Email> {
     return this.http
       .get(`${this.getEmailsApi()}/${id}`)
-      .map((data: EmailData) => new Email(data))
+      .map((data: EmailResponse) => new Email(data))
   }
 
 }

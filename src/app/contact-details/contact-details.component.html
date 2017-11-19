@@ -5,8 +5,8 @@
   (onEdit)="isEditMode = true"
   [contact]="contact">
 </contact-card-detailed>
-<edit-contact
+<contact-edit
   *ngIf="isEditMode"
   [contact]="contact"
   (onUpdate)="updateContact($event)">
-</edit-contact>
+</contact-edit>

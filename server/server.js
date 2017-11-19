@@ -35,6 +35,7 @@ router.get(`${boxUrl}/emails/search`, emailsApi.search);
 router.get(`${boxUrl}/emails/:id`, emailsApi.get);
 router.get(`${boxUrl}/emails/type/:type`, emailsApi.getAllByType);
 router.delete(`${boxUrl}/emails`, emailsApi.deleteSelected);
+router.post(`${boxUrl}/emails`, emailsApi.send);
 router.delete(`${boxUrl}/emails/:id`, emailsApi.delete);
 
 router.get(`${boxUrl}/contacts`, usersApi.getAll);

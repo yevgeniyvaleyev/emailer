@@ -1,6 +1,9 @@
 const generateId = require('./generate-id');
 const db = require('./fake-db');
 
+const requiredUserFields = ['email'];
+const requiredEmailFields = ['to'];
+
 function findById(id, type) {
   const parsedId = parseInt(id, 10);
   return db[type].find((item) => item.id === parsedId);
@@ -14,20 +17,35 @@ function removeById(id, type) {
   return initialLength > db[type].length;
 }
 
-function hasRequiredFields(data) {
-  const requiredFields = ['email'];
-
-  return requiredFields.every((field) => data[field] !== undefined);
+function hasRequiredFields(data, fields) {
+  return fields.every((field) => data[field] !== undefined);
 }
 
 function generateUser(data, boxId) {
-  if (!hasRequiredFields(data)) {
+  if (!hasRequiredFields(data, requiredUserFields)) {
     throw new Error('Data for new user is invalid');
   }
   const user = {
     name: data.name,
     id: generateId(),
     email: data.email,
+    boxId
+  };
+  return user;
+}
+
+function generateSentEmail(data, boxId) {
+  if (!hasRequiredFields(data, requiredEmailFields)) {
+    throw new Error('Data for new email is invalid');
+  }
+  const user = {
+    to: data.to,
+    id: generateId(),
+    status: db.emailStates.sent,
+    from: findById(boxId, 'mailboxes').email,
+    subject: data.subject,
+    body: data.body,
+    date: new Date().toUTCString(),
     boxId
   };
   return user;
@@ -43,6 +61,12 @@ function searchEmails(term, type, boxId) {
     boxId === email.boxId &&
     (email.subject.includes(term) || email.body.includes(term))
   );
+}
+
+function addEmail (emailData, boxId) {
+  const email = generateSentEmail(emailData, boxId);
+  db.emails.push(email);
+  return true;
 }
 
 function findEmailById(id) {
@@ -82,6 +106,10 @@ function deleteUser(id) {
   return removeById(id, 'users');
 }
 
+function findUserByEmail(email, boxid) {
+  return getAllUsers(boxid).find((user) => user.email === email);
+}
+
 function getAllMailboxes() {
   return db.mailboxes;
 }
@@ -91,11 +119,13 @@ module.exports = {
   findEmailById,
   findEmailByType,
   searchEmails,
+  addEmail,
   deleteEmail,
 
   getAllUsers,
   updateUser,
   findUserById,
+  findUserByEmail,
   addUser,
   deleteUser,
 

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmailsNavigationComponent implements OnInit {
 
-  items: string[] = [
+  sections: string[] = [
     'inbox',
     'sent',
     'draft',
     'spam'
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

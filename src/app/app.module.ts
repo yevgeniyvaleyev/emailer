@@ -22,6 +22,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatCheckboxModule,
+  MatAutocompleteModule,
   MatSelectModule
 } from '@angular/material';
 
@@ -29,7 +30,7 @@ import {
 import { AppComponent } from './app.component';
 import { ContactCardDetailedComponent } from './contact-card-detailed/contact-card-detailed.component';
 import { MyDateFormatPipe } from './date-format.pipe';
-import { AddContactComponent } from './edit-contact/edit-contact.component';
+import { AddContactComponent } from './contact-edit/contact-edit.component';
 import { EmailsListComponent } from './emails-list/emails-list.component';
 import { LoginComponent } from './login/login.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
@@ -40,6 +41,7 @@ import { ContactCardShortComponent } from './contact-card-short/contact-card-sho
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { EmailsPageComponent } from './emails-page/emails-page.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
+import { EmailComposeComponent } from './email-compose/email-compose.component';
 
 const pages = [
   { path: '', redirectTo: 'emails/inbox', pathMatch: 'full' },
@@ -48,6 +50,7 @@ const pages = [
     component: EmailsPageComponent,
     children: [
       { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+      { path: 'compose', component: EmailComposeComponent },
       {
         path: ':type', children: [
           { path: '', component: EmailsListComponent },
@@ -100,7 +103,8 @@ const routes = [
     ContactCardShortComponent,
     ContactDetailsComponent,
     EmailsPageComponent,
-    MailboxComponent
+    MailboxComponent,
+    EmailComposeComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +117,7 @@ const routes = [
     MatCardModule,
     MatSelectModule,
     MatMenuModule,
+    MatAutocompleteModule,
     MatCheckboxModule,
     HttpClientModule,
     FormsModule,

@@ -1,10 +1,19 @@
 <mat-list>
-  <mat-list-item *ngFor="let item of items">
+  <mat-list-item>
     <button
       routerLinkActive="active"
-      [routerLink]="[item]"
+      [routerLink]="['compose']"
+      [queryParams]="{ targetUrl: router.url }"
+      mat-raised-button>
+        Compose
+    </button>
+  </mat-list-item>
+  <mat-list-item *ngFor="let section of sections">
+    <button
+      routerLinkActive="active"
+      [routerLink]="[section]"
       mat-button>
-        {{item}}
+        {{section}}
     </button>
   </mat-list-item>
  </mat-list>

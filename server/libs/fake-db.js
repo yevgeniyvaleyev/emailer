@@ -7,6 +7,23 @@ const emailStates = {
   sent: 'sent'
 }
 
+function getSender (boxid) {
+  return mailboxes.find(mailboxe => mailboxe.id === boxid).email
+}
+
+const mailboxes = [
+  {
+    id: 0,
+    email: "main@example.com",
+    alias: "main"
+  },
+  {
+    id: 1,
+    email: "second@example.com",
+    alias: "second"
+  }
+]
+
 module.exports.emailStates = emailStates;
 
 const emails = [
@@ -15,9 +32,9 @@ const emails = [
     boxId: 0,
     status: emailStates.inbox,
     subject: "Some title 1",
-    from: "test@test.com",
+    from: getSender(0),
     to: "example@test.com",
-    date: "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    date: new Date().toUTCString(),
     body: "This is a body of an email 1"
   },
   {
@@ -25,9 +42,9 @@ const emails = [
     boxId: 0,
     status: emailStates.inbox,
     subject: "Some title foo",
-    from: "test@test.com",
+    from: getSender(0),
     to: "example@test.com",
-    date: "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    date: new Date().toUTCString(),
     body: "This is a body of an email "
   },
   {
@@ -35,9 +52,9 @@ const emails = [
     boxId: 0,
     status: emailStates.spam,
     subject: "Some spam title 2",
-    from: "test@test.com",
+    from: getSender(0),
     to: "example@test.com",
-    date: "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    date: new Date().toUTCString(),
     body: "This is a body of an email 1"
   },
   {
@@ -45,9 +62,9 @@ const emails = [
     boxId: 0,
     status: emailStates.draft,
     subject: "Some draft title 3",
-    from: "test@test.com",
+    from: getSender(0),
     to: "example@test.com",
-    date: "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    date: new Date().toUTCString(),
     body: "This is a body of an email 1"
   },
   {
@@ -55,9 +72,9 @@ const emails = [
     boxId: 1,
     status: emailStates.sent,
     subject: "Some sent title 4",
-    from: "test@test.com",
+    from: getSender(1),
     to: "example@test.com",
-    date: "Sun Oct 29 2017 20:41:57 GMT+0100 (CET)",
+    date: new Date().toUTCString(),
     body: "This is a body of an email 1"
   }
 ];
@@ -89,21 +106,9 @@ const users = [
   },
 ]
 
-const mailboxes = [
-  {
-    id: 0,
-    email: "main@example.com",
-    alias: "main"
-  },
-  {
-    id: 1,
-    email: "second@example.com",
-    alias: "second"
-  }
-]
-
 module.exports = {
   emails,
   users,
-  mailboxes
+  mailboxes,
+  emailStates
 };

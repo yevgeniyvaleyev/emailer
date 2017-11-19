@@ -1,4 +1,4 @@
-import { EmailData } from './../interfaces';
+import { EmailResponse } from './../interfaces';
 import { email as emailPattern } from './../validators/patterns';
 
 export class Email {
@@ -10,7 +10,7 @@ export class Email {
   date: Date;
   body: string;
 
-  constructor (data: EmailData) {
+  constructor (data: EmailResponse) {
     if (!this.isValidData(data)) {
       throw new Error('Email data is not valid')
     }
@@ -30,7 +30,7 @@ export class Email {
     return !isNaN(new Date(date).valueOf());
   }
 
-  isValidData (data: EmailData) {
+  isValidData (data: EmailResponse) {
     return data.subject && data.body && !isNaN(data.id)
       && this.isValidEmail(data.from)&& this.isValidEmail(data.to)
       && this.isValidDate(data.date);

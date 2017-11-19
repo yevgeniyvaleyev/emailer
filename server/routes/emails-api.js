@@ -38,6 +38,33 @@ module.exports.delete = async (ctx) => {
   ctx.body = db.deleteEmail(id, boxid);
 };
 
+module.exports.send = async (ctx) => {
+  const boxid = Number(ctx.params.boxid);
+  const {
+    to,
+    subject,
+    body
+  } = ctx.request.body;
+
+  if (!to) {
+    generateCustomError('Invalid email data', 400);
+  }
+
+  const emailData = {
+    to,
+    body: body || '',
+    subject: subject || ''
+  };
+
+  const user = db.findUserByEmail(to, boxid);
+  if (!user) {
+    db.addUser({ email: to, name: '' }, boxid);
+  }
+  ctx.body = db.addEmail(emailData, boxid);
+};
+
+
+
 module.exports.get = async (ctx) => {
   const email = db.findEmailById(ctx.params.id, Number(ctx.params.boxid));
 
