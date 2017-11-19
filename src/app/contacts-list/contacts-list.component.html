@@ -5,7 +5,9 @@
 <mat-list>
     <mat-list-item
       *ngFor="let contact of contacts">
-        <a mat-button [routerLink]="[contact.id]">
+        <a mat-button
+          [queryParams]="{ returnUrl: returnUrl }"
+          [routerLink]="[contact.id]">
           <span *ngIf="contact.name">
             {{ contact.name }},
           </span>

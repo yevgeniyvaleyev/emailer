@@ -14,6 +14,7 @@ export class ContactsListComponent implements OnInit {
 
   contacts: Contact[];
   selectedContactId: string|null;
+  returnUrl: string;
 
   constructor(
     private router: Router,
@@ -21,6 +22,7 @@ export class ContactsListComponent implements OnInit {
   ) {}
 
   ngOnInit () {
+    this.returnUrl = this.router.url;
     this.getContacts();
   }
 

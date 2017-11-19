@@ -15,17 +15,23 @@ export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
   isEditMode: false;
+  returnUrl: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private contactsService: ContactsService
   ) {}
 
   ngOnInit() {
+    this.activatedRoute.queryParams
+      .subscribe(({returnUrl}) => {
+        this.returnUrl = returnUrl || '/';
+      });
     this.route.params
-    .switchMap(({id}) => this.contactsService.get(id))
-    .subscribe((contact: Contact) => this.contact = contact)
+      .switchMap(({id}) => this.contactsService.get(id))
+      .subscribe((contact: Contact) => this.contact = contact)
   }
 
   updateContact (data: ContactRequest) {
@@ -41,7 +47,7 @@ export class ContactDetailsComponent implements OnInit {
     this.contactsService
       .removeById(id)
       .subscribe(() => {
-        this.router.navigate(['/contacts'])
+        this.router.navigate([this.returnUrl])
       })
   }
 

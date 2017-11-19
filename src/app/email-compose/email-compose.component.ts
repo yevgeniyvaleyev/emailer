@@ -36,8 +36,8 @@ export class EmailComposeComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams
-      .subscribe((params) => {
-        this.returnUrl = params.targetUrl;
+      .subscribe(({returnUrl}) => {
+        this.returnUrl = returnUrl || '/';
       });
     this.contactsService.getAll()
       .subscribe((contacts: Contact[]) => {

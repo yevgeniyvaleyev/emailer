@@ -14,9 +14,12 @@ export class EmailsNavigationComponent implements OnInit {
     'draft',
     'spam'
   ];
+  returnUrl: string;
 
   constructor(public router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.returnUrl = this.router.url;
+  }
 
 }

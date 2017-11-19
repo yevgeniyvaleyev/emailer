@@ -13,7 +13,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 export class EditContactComponent implements OnInit {
 
   @Input('contact') contact?: Contact
-  @Input('isNew') isNew: boolean
+  @Input('isNew') isNew?: boolean
   @Output('onUpdate') onUpdate = new EventEmitter();
 
   form: AbstractControl;
@@ -53,7 +53,7 @@ export class EditContactComponent implements OnInit {
 
 getInitialFormData (contact) {
     return {
-      name: contact.name,
+      name: contact.name || '',
       email: contact.email
     };
   }
