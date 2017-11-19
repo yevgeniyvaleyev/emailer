@@ -12,7 +12,7 @@ import * as utils from '../utils';
 })
 export class ContactsListComponent implements OnInit {
 
-  contacts: Contact[] = [];
+  contacts: Contact[];
   selectedContactId: string|null;
 
   constructor(

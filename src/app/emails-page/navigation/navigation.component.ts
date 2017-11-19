@@ -15,7 +15,7 @@ export class EmailsNavigationComponent implements OnInit {
     'spam'
   ];
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit() {}
 

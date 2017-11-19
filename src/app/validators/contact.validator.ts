@@ -1,6 +1,6 @@
 import { ContactsService } from './../contacts.service';
 import { Observable } from 'rxjs/Observable';
-import { email, fullName } from './patterns';
+import { email } from './patterns';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { getAge } from '../utils';
 import { Injectable } from '@angular/core';
@@ -10,15 +10,6 @@ import 'rxjs/add/operator/delay';
 export class ContactValidators {
 
   constructor (private contactService: ContactsService) {}
-
-  static fullName (control: AbstractControl): ValidationErrors | null {
-    if (fullName.test(control.value)) {
-      return null
-    }
-    return {
-      fullName: true
-    }
-  }
 
   static correctEmail (control: AbstractControl): ValidationErrors | null {
     if (email.test(control.value)) {

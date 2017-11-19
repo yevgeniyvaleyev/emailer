@@ -1,4 +1,7 @@
-  <div class="content">{{ contact.fullName }}, <em>{{ contact.email }}</em></div>
+  <div class="content">
+    <span *ngIf="contact.name">{{ contact.name }}, </span>
+    <em>{{ contact.email }}</em>
+  </div>
   <button
     mat-button
     class="action-btn"
