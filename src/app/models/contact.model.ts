@@ -16,6 +16,6 @@ export class Contact {
   }
 
   isValidData (data: ContactResponse) {
-    return data.id && data.email;
+    return data.id && data.email && typeof data.name === 'string';
   }
 }

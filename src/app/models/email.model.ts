@@ -31,7 +31,9 @@ export class Email {
   }
 
   isValidData (data: EmailResponse) {
-    return data.subject && data.body && !isNaN(data.id)
+    return typeof data.subject === 'string'
+      && typeof data.body === 'string'
+      && !isNaN(data.id)
       && this.isValidEmail(data.from)&& this.isValidEmail(data.to)
       && this.isValidDate(data.date);
   }

@@ -82,7 +82,7 @@ const emails = [
 const users = [
   {
     id: generateId(),
-    fullName: "Sam Smith",
+    name: "Sam Smith",
     birthdate: new Date().toUTCString(),
     gender: 'female',
     email: "sam@example.com",
@@ -90,7 +90,7 @@ const users = [
   },
   {
     id: generateId(),
-    fullName: "Mike Rosendal",
+    name: "Mike Rosendal",
     birthdate: new Date().toUTCString(),
     gender: 'male',
     email: "mike@example.com",
@@ -98,7 +98,7 @@ const users = [
   },
   {
     id: generateId(),
-    fullName: "Mike Rosendal",
+    name: "Mike Rosendal",
     birthdate: new Date().toUTCString(),
     gender: 'male',
     email: "mike@example.com",
