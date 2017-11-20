@@ -6,6 +6,7 @@ import { APP_CONFIG } from './config/tokens';
 import { Injectable, Injector, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MailboxService {
