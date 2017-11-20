@@ -34,7 +34,7 @@ export class MainNavigationComponent implements OnInit {
   }
 
   logout () {
-    this.authService.logout().subscribe(({isAuthenticated}) => {
+    this.authService.logout().subscribe((isAuthenticated) => {
       if (!isAuthenticated) {
         this.router.navigate(['/login']);
       }

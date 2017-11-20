@@ -1,29 +1,33 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AuthService {
 
-  private isAuthenticated = false;
+  private isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  private authSubject = new BehaviorSubject<boolean>(this.isAuthenticated);
+  private authStream: Observable<boolean>;
 
-  constructor() {}
+  constructor() {
+    this.authStream = this.authSubject
+      .do((isAuthenticated) => {
+        this.isAuthenticated = isAuthenticated;
+        localStorage.setItem('isAuthenticated', String(isAuthenticated))
+      })
+  }
 
   login() {
-   return Observable.from([{isAuthenticated: true}])
-    .switchMap(({isAuthenticated}) => {
-      this.isAuthenticated = isAuthenticated;
-      return Observable.from([{isAuthenticated}]);
-    })
+    this.authSubject.next(true);
+    return this.authStream;
   }
 
   logout() {
-    return Observable.from([{isAuthenticated: false}])
-    .switchMap(({isAuthenticated}) => {
-      this.isAuthenticated = isAuthenticated;
-      return Observable.from([{isAuthenticated}]);
-    })
+    this.authSubject.next(false);
+    return this.authStream;
   }
 
   isLoggedIn() {

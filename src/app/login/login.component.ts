@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   get email () {
     return this.form.get('email');
@@ -38,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   login () {
-    this.authService.login().subscribe(({isAuthenticated}) => {
+    this.authService.login().subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         const targetUrl = this.route.snapshot.queryParamMap.get('targetUrl');
         this.router.navigate([targetUrl || '/']);
