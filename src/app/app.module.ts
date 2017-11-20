@@ -43,7 +43,6 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 import { EmailsPageComponent } from './emails-page/emails-page.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
 import { EmailComposeComponent } from './email-compose/email-compose.component';
-import { SsPipe } from './ss.pipe';
 
 const pages = [
   { path: '', redirectTo: 'emails/inbox', pathMatch: 'full' },
