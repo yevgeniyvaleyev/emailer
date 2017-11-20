@@ -72,10 +72,13 @@ export class EmailsListComponent implements OnInit {
 
   delete (id: number) {
     this.deleteSubject.next(id);
+    const index = this.selectedIds.indexOf(id);
+    this.selectedIds = removeItemFromList(this.selectedIds, index);
   }
 
   deleteSelected () {
     this.deleteSubject.next(this.selectedIds);
+    this.selectedIds = [];
   }
 
 }

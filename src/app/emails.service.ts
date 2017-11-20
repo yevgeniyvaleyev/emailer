@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs/Observable';
-import { MailboxService } from './mailbox.service';
 import { Email } from './models/email.model';
 import { EmailResponse, EmailRequest } from './interfaces';
 import { AppConfig } from './config/interfaces';
@@ -12,17 +11,12 @@ export class EmailsService {
 
   constructor(
     private http: HttpClient,
-    private mailboxService: MailboxService,
     @Inject(APP_CONFIG) private config: AppConfig
   ) {}
 
-  private getEmailsApi (): string {
-    return this.mailboxService.getBaseApi() + this.config.emailsApi;
-  }
-
   getAllByType (type: string): Observable<Email[]> {
     return this.http
-      .get(`${this.getEmailsApi()}/type/${type}`)
+      .get(`${this.config.emailsApi}/type/${type}`)
       .map((response: EmailResponse[]) =>
         response.map(data => new Email(data)))
   }
@@ -33,7 +27,7 @@ export class EmailsService {
       .set('term', term);
 
     return this.http
-      .get(`${this.getEmailsApi()}/search`, { params })
+      .get(`${this.config.emailsApi}/search`, { params })
       .map((response: EmailResponse[]) =>
         response.map(data => new Email(data)))
   }
@@ -43,25 +37,25 @@ export class EmailsService {
       .set('ids', JSON.stringify(ids));
 
     return this.http
-      .delete(this.getEmailsApi(), { params })
+      .delete(this.config.emailsApi, { params })
       .map((status: boolean) => status);
   }
 
   delete (id: number): Observable<boolean> {
     return this.http
-      .delete(`${this.getEmailsApi()}/${id}`)
+      .delete(`${this.config.emailsApi}/${id}`)
       .map((status: boolean) => status);
   }
 
   send (email: EmailRequest): Observable<boolean> {
     return this.http
-      .post(this.getEmailsApi(), email)
+      .post(this.config.emailsApi, email)
       .map((status: boolean) => status);
   }
 
   get (id: number): Observable<Email> {
     return this.http
-      .get(`${this.getEmailsApi()}/${id}`)
+      .get(`${this.config.emailsApi}/${id}`)
       .map((data: EmailResponse) => new Email(data))
   }
 

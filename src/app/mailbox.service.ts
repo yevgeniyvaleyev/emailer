@@ -25,10 +25,6 @@ export class MailboxService {
         response.map(data => new Mailbox(data)))
   }
 
-  getBaseApi (): string {
-    return `${this.config.mailboxesApi}/${this.currentId}`;
-  }
-
   set currentId (id: number) {
     this._currentId = Number(id);
     this.updateStream.next(id);

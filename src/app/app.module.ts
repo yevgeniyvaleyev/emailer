@@ -1,3 +1,4 @@
+import { MailboxInterceptorService } from './mailbox-interceptor.service';
 import { MailboxService } from './mailbox.service';
 import { ContactValidators } from './validators/contact.validator';
 import { AuthService } from './auth.service';
@@ -9,7 +10,7 @@ import { ContactsService } from './contacts.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, InjectionToken, ReflectiveInjector, Injector, Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -132,7 +133,12 @@ const routes = [
     AuthService,
     MailboxService,
     ContactValidators,
-    { provide: APP_CONFIG, useValue: APP_CONFIG_DATA }
+    { provide: APP_CONFIG, useValue: APP_CONFIG_DATA },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MailboxInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
