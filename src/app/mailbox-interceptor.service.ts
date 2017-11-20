@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class MailboxInterceptorService implements HttpInterceptor {
 
-  targetSegmentsPattern = /^\/emails|\/cont/;
+  targetSegmentsPattern = /^\/emails|\/contacts/;
 
   constructor(
     private injector: Injector,
