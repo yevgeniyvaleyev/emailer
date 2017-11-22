@@ -1,9 +1,8 @@
-const db = require('../libs/db-client');
-const argv = require('yargs').argv;
+import db from '../libs/db-client';
 
 function generateCustomError(message, status) {
   const error = new Error(JSON.stringify({ error: message }));
-  error.status = status;
+  // error.status = status;
   throw error;
 }
 
@@ -18,24 +17,24 @@ module.exports.search = async (ctx) => {
 module.exports.deleteSelected = async (ctx) => {
   const boxid = Number(ctx.params.boxid);
   const ids = JSON.parse(ctx.query.ids);
-  const areAllEmailsExist = ids.every((id) => db.findEmailById(id, boxid))
+  const areAllEmailsExist = ids.every((id) => db.findEmailById(id))
 
   if (!areAllEmailsExist) {
     generateCustomError('Some emails do not exist', 404);
   }
 
-  ctx.body = ids.every((id) => db.deleteEmail(id, boxid));
+  ctx.body = ids.every((id) => db.deleteEmail(id));
 };
 
 module.exports.delete = async (ctx) => {
   const boxid = Number(ctx.params.boxid);
   const id = Number(ctx.params.id);
 
-  if (!db.findEmailById(id, boxid)) {
+  if (!db.findEmailById(id)) {
     generateCustomError('Email does not exist', 404);
   }
 
-  ctx.body = db.deleteEmail(id, boxid);
+  ctx.body = db.deleteEmail(id);
 };
 
 module.exports.send = async (ctx) => {
@@ -66,7 +65,7 @@ module.exports.send = async (ctx) => {
 
 
 module.exports.get = async (ctx) => {
-  const email = db.findEmailById(ctx.params.id, Number(ctx.params.boxid));
+  const email = db.findEmailById(ctx.params.id);
 
   if (!email) {
     generateCustomError('Email does not exist', 404);

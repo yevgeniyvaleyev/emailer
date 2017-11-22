@@ -1,4 +1,4 @@
-const generateId = require('./generate-id');
+import generateId from './generate-id';
 
 const emailStates = {
   inbox: 'inbox',
@@ -106,7 +106,7 @@ const users = [
   },
 ]
 
-module.exports = {
+export default {
   emails,
   users,
   mailboxes,

@@ -1,6 +1,6 @@
 let currentId = 0;
 
-module.exports = () => {
+export default () => {
   return currentId++;
 };
 

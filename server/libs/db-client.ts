@@ -1,5 +1,5 @@
-const generateId = require('./generate-id');
-const db = require('./fake-db');
+import generateId from './generate-id';
+import db from './fake-db';
 
 const requiredUserFields = ['email'];
 const requiredEmailFields = ['to'];
@@ -114,7 +114,7 @@ function getAllMailboxes() {
   return db.mailboxes;
 }
 
-module.exports = {
+export default {
   getAllEmails,
   findEmailById,
   findEmailByType,

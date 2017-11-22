@@ -1,9 +1,9 @@
-const db = require('../libs/db-client');
-const argv = require('yargs').argv;
+import db from '../libs/db-client';
+import { argv } from 'yargs';
 
 function generateCustomError(message, status) {
   const error = new Error(JSON.stringify({ error: message }));
-  error.status = status;
+  // error.status = status;
   throw error;
 }
 
@@ -12,7 +12,7 @@ module.exports.getAll = async (ctx) => {
 };
 
 module.exports.get = async (ctx) => {
-  const item = db.findUserById(ctx.params.id, Number(ctx.params.boxid));
+  const item = db.findUserById(ctx.params.id);
 
   if (!item) {
     generateCustomError('User does not exist', 404);
@@ -62,7 +62,7 @@ module.exports.update = async (ctx) => {
     generateCustomError('Invalid user data', 400);
   }
 
-  const item = db.findUserById(id, boxid);
+  const item = db.findUserById(id);
 
   if (!item) {
     generateCustomError('User does not exist', 404);
@@ -76,11 +76,11 @@ module.exports.update = async (ctx) => {
 };
 
 module.exports.delete = async (ctx) => {
-  const item = db.findUserById(ctx.params.id, Number(ctx.params.boxid));
+  const item = db.findUserById(ctx.params.id);
 
     if (!item) {
       generateCustomError('User does not exist', 404);
     }
 
-    ctx.body = db.deleteUser(item.id, Number(ctx.params.boxid));
+    ctx.body = db.deleteUser(item.id);
 };
