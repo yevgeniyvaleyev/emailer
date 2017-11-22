@@ -79,7 +79,16 @@ const emails = [
   }
 ];
 
-const users = [
+interface IUser {
+  id: number
+  name?: string
+  birthdate?: string
+  gender?: string
+  email: string
+  boxId: number
+}
+
+const users: IUser[] = [
   {
     id: generateId(),
     name: "Sam Smith",
