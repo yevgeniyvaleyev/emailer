@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const convert = require('koa-convert');
-const send = require('koa-send');
 
 const Router = require('koa-router');
 const argv = require('yargs').argv;
